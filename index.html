@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chasing Checkers — The pursuit of performance</title>
+<meta name="description" content="Where racers go for an edge. Equipment, setup, and strategy — starting with karting.">
+<link rel="stylesheet" href="assets/app.css">
+<style>
+/* ---- home hero ---- */
+.homehero{position:relative;text-align:center;padding:48px 0 0;overflow:hidden}
+.homehero-bg{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.slash{position:absolute;top:-70px;height:600px;transform:skewX(-16deg)}
+.s1{right:5%;width:64px;background:var(--red);opacity:.09}
+.s2{right:13%;width:16px;background:var(--white);opacity:.05}
+.s3{right:1%;width:9px;background:var(--gold);opacity:.14}
+.s4{left:6%;width:44px;background:var(--red);opacity:.06}
+.s5{left:13%;width:12px;background:var(--white);opacity:.04}
+.logo-hero{position:relative;z-index:1;width:min(520px,88vw);height:auto;display:block;margin:0 auto;
+  filter:drop-shadow(0 16px 44px rgba(214,32,42,.20))}
+.positioning{position:relative;z-index:1;max-width:600px;margin:22px auto 0;
+  font-size:17px;color:var(--grey-2);line-height:1.6}
+.homehero .check-sm{margin:26px auto 30px}
+
+/* ---- site nav ---- */
+.sitenav{display:flex;justify-content:center;flex-wrap:wrap;border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);margin-bottom:56px}
+.sitenav a{font-family:var(--disp);font-weight:700;font-style:italic;font-size:15px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--grey);text-decoration:none;
+  padding:12px 18px 10px;border-bottom:3px solid transparent}
+.sitenav a:hover{color:var(--white)}
+.sitenav a[aria-current="page"]{color:var(--white);border-bottom-color:var(--red)}
+
+/* ---- section furniture ---- */
+.sec{padding-bottom:58px}
+.sec-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  border-bottom:1px solid var(--rule);padding-bottom:10px;margin-bottom:24px}
+.sec-head h2{font-family:var(--disp);font-weight:800;font-style:italic;font-size:30px;
+  text-transform:uppercase;line-height:1}
+.sec-head .kicker{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold);margin-left:auto}
+.sec-intro{font-size:15px;color:var(--grey-2);max-width:64ch;margin-bottom:26px}
+
+/* ---- the ladder ---- */
+.rung{display:grid;grid-template-columns:52px 1fr auto;gap:18px;align-items:center;
+  background:var(--carbon);border:1px solid var(--rule);padding:14px 18px;margin-bottom:8px}
+.rung.live{border-left:3px solid var(--gold)}
+.rung.queued{opacity:.62}
+.rung-no{font-family:var(--mono);font-size:11px;color:var(--grey);letter-spacing:.08em}
+.rung-name{font-family:var(--disp);font-weight:700;font-style:italic;font-size:21px;
+  text-transform:uppercase;line-height:1.1}
+.rung-desc{font-size:13px;color:var(--grey);margin-top:2px}
+.rung-state{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  padding:3px 9px;white-space:nowrap}
+.st-live{background:var(--gold);color:#1A1405}
+.st-next{background:var(--carbon-3);color:var(--grey-2);border:1px solid var(--rule)}
+.st-later{background:transparent;color:#4E555D;border:1px solid #30353C}
+
+/* ---- featured tool ---- */
+.tool-feature{display:grid;grid-template-columns:1fr 300px;gap:0;
+  background:var(--carbon);border:1px solid var(--rule);border-left:3px solid var(--red);
+  text-decoration:none;transition:border-color .15s}
+.tool-feature:hover{border-color:var(--gold);border-left-color:var(--gold)}
+.tf-copy{padding:26px 26px 28px}
+.tf-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:9px}
+.tf-name{font-family:var(--disp);font-weight:800;font-style:italic;font-size:34px;
+  text-transform:uppercase;line-height:.98;margin-bottom:12px}
+.tf-desc{font-size:14.5px;color:var(--grey-2);line-height:1.6;max-width:52ch}
+.tf-cta{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grey);margin-top:18px}
+.tool-feature:hover .tf-cta{color:var(--gold)}
+.tf-art{background:var(--black);border-left:1px solid var(--rule);
+  display:flex;flex-direction:column;justify-content:center;gap:12px;padding:26px 24px}
+.tf-tubes{display:flex;align-items:flex-end;gap:12px;justify-content:center}
+.tf-cap{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--grey);text-align:center}
+.tf-bar{display:flex;gap:2px}
+.tf-bar i{height:10px;flex:1}
+
+/* ---- field notes ---- */
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.note-card{background:var(--carbon);border:1px solid var(--rule);padding:18px 20px 20px}
+.note-cat{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px}
+.note-title{font-family:var(--disp);font-weight:700;font-style:italic;font-size:20px;
+  text-transform:uppercase;line-height:1.08;margin-bottom:8px}
+.note-dek{font-size:13px;color:var(--grey);line-height:1.55}
+.note-state{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:#4E555D;margin-top:12px}
+
+/* ---- stance ---- */
+.stance{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px}
+.stance h3{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px}
+.stance p{font-size:13.5px;color:var(--grey);line-height:1.6}
+
+/* ---- footer ---- */
+.sitefoot{border-top:1px solid var(--rule);padding:24px 0 44px;display:flex;gap:18px;
+  flex-wrap:wrap;align-items:center;font-family:var(--mono);font-size:10px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
+.sitefoot .r{margin-left:auto}
+
+@media(max-width:780px){
+  .tool-feature{grid-template-columns:1fr}
+  .tf-art{border-left:none;border-top:1px solid var(--rule)}
+  .rung{grid-template-columns:36px 1fr;gap:12px}
+  .rung-state{grid-column:2;justify-self:start;margin-top:6px}
+  .sitefoot .r{margin-left:0;width:100%}
+}
+</style>
+</head>
+<body>
+<div class="checkstrip"></div>
+
+<header class="homehero">
+  <div class="homehero-bg" aria-hidden="true">
+    <div class="slash s1"></div><div class="slash s2"></div><div class="slash s3"></div>
+    <div class="slash s4"></div><div class="slash s5"></div>
+  </div>
+  <img class="logo-hero" src="assets/logo-badge.webp" alt="Chasing Checkers — two racers, one dream">
+  <p class="positioning">The pursuit of performance, for racers looking for an edge. Equipment, setup, and strategy — written by people spending their own money on it.</p>
+  <div class="check-sm"></div>
+</header>
+
+<div class="wrap">
+  <nav class="sitenav">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="karting.html">Karting</a>
+    <a href="frame.html">Tools</a>
+    <a href="about.html">About</a>
+  </nav>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Start at the bottom</h2>
+      <span class="kicker">The ladder</span>
+    </div>
+    <p class="sec-intro">Every discipline here gets the same treatment: what the equipment actually does, what it costs, and what the people winning are running. We're starting where we're racing. The rest opens as we get there — and we'd rather publish nothing than publish guesses.</p>
+
+    <div class="rung live">
+      <div class="rung-no">01</div>
+      <div><div class="rung-name">Karting</div><div class="rung-desc">LO206, cadet, TaG, shifter — chassis, engines, tracks, series</div></div>
+      <span class="rung-state st-live">Live</span>
+    </div>
+    <div class="rung queued">
+      <div class="rung-no">02</div>
+      <div><div class="rung-name">RC &amp; Small Scale</div><div class="rung-desc">Where a lot of racers start, and where setup theory is cheap to learn</div></div>
+      <span class="rung-state st-next">Next</span>
+    </div>
+    <div class="rung queued">
+      <div class="rung-no">03</div>
+      <div><div class="rung-name">Club &amp; Regional Car Racing</div><div class="rung-desc">Licensing, spec classes, arrive-and-drive, first season economics</div></div>
+      <span class="rung-state st-next">Next</span>
+    </div>
+    <div class="rung queued">
+      <div class="rung-no">04</div>
+      <div><div class="rung-name">Prototypes</div><div class="rung-desc">Radical, Praga R1 — the first real downforce most drivers ever feel</div></div>
+      <span class="rung-state st-later">Queued</span>
+    </div>
+    <div class="rung queued">
+      <div class="rung-no">05</div>
+      <div><div class="rung-name">GT &amp; Sports Car</div><div class="rung-desc">GT4, GT3, endurance formats and what they ask of a driver</div></div>
+      <span class="rung-state st-later">Queued</span>
+    </div>
+    <div class="rung queued">
+      <div class="rung-no">06</div>
+      <div><div class="rung-name">Top Flight</div><div class="rung-desc">NASCAR, IndyCar, F1 — read for what transfers down, not for the gossip</div></div>
+      <span class="rung-state st-later">Queued</span>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Tools</h2>
+      <span class="kicker">Built for the paddock</span>
+    </div>
+    <a class="tool-feature" href="frame.html">
+      <div class="tf-copy">
+        <div class="tf-tag">Chassis Finder · Karting</div>
+        <div class="tf-name">The Frame Is<br>Not The Variable</div>
+        <p class="tf-desc">Most chassis in a given class will win races. What separates them is whether the tubing and axle suit the power you're making, and whether anyone within driving distance stocks parts on a Saturday. Filter by class, budget, and region. See the section drawn to scale.</p>
+        <div class="tf-cta">Open the finder →</div>
+      </div>
+      <div class="tf-art" aria-hidden="true">
+        <div class="tf-tubes">
+          <svg width="45" height="45" viewBox="0 0 45 45"><circle cx="22.5" cy="22.5" r="19.5" fill="none" stroke="#F4F5F6" stroke-width="2.5"/><circle cx="22.5" cy="22.5" r="14.5" fill="none" stroke="#39404A" stroke-width="1"/></svg>
+          <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="none" stroke="#F4F5F6" stroke-width="2.5"/><circle cx="20" cy="20" r="12" fill="none" stroke="#39404A" stroke-width="1"/></svg>
+          <svg width="57" height="57" viewBox="0 0 57 57"><circle cx="28.5" cy="28.5" r="25.5" fill="none" stroke="#F4F5F6" stroke-width="2.5"/><circle cx="28.5" cy="28.5" r="20.5" fill="none" stroke="#39404A" stroke-width="1"/></svg>
+        </div>
+        <div class="tf-cap">32mm · 28mm · 40mm axle</div>
+        <div class="tf-bar">
+          <i style="background:#D6202A"></i><i style="background:#CB3A2B"></i><i style="background:#BF542D"></i>
+          <i style="background:#B36D30"></i><i style="background:#C6913D"></i><i style="background:#E0B44A"></i>
+        </div>
+        <div class="tf-cap">Compliance — red to gold</div>
+      </div>
+    </a>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Field notes</h2>
+      <span class="kicker">In the works</span>
+    </div>
+    <p class="sec-intro">Written up as we work through them ourselves. Nothing here is sponsored and nobody pays for placement.</p>
+    <div class="notes">
+      <article class="note-card">
+        <div class="note-cat">Chassis</div>
+        <div class="note-title">Why a CIK frame is wrong under nine horsepower</div>
+        <p class="note-dek">A kart has no differential — it turns by twisting enough to lift the inside rear. Frames built for 30hp two-strokes never get there on a 206.</p>
+        <div class="note-state">Drafting</div>
+      </article>
+      <article class="note-card">
+        <div class="note-cat">Setup</div>
+        <div class="note-title">Two bearings or three</div>
+        <p class="note-dek">The middle bearing halves the axle's unsupported span. When to run it, when to pull it, and why hop and push feel identical from the seat.</p>
+        <div class="note-state">Drafting</div>
+      </article>
+      <article class="note-card">
+        <div class="note-cat">Money</div>
+        <div class="note-title">What a shifter season actually costs</div>
+        <p class="note-dek">Build sheet plus consumables, honestly totalled — and the comparison nobody makes: a full KZ year against a Radical race weekend.</p>
+        <div class="note-state">Drafting</div>
+      </article>
+      <article class="note-card">
+        <div class="note-cat">Strategy</div>
+        <div class="note-title">Reading the class lifecycle</div>
+        <p class="note-dek">Entry counts, used listing volume, and engine builder backlogs are leading indicators. A series folding is a lagging one, and by then it's too late.</p>
+        <div class="note-state">Researching</div>
+      </article>
+      <article class="note-card">
+        <div class="note-cat">Ladder</div>
+        <div class="note-title">206 to a prototype seat</div>
+        <p class="note-dek">What karting actually transfers, what it can't teach, and why running the ladder sequentially is the most common expensive mistake.</p>
+        <div class="note-state">Drafting</div>
+      </article>
+      <article class="note-card">
+        <div class="note-cat">Cadet</div>
+        <div class="note-title">Buying a kid's first kart</div>
+        <p class="note-dek">The hardest version of this decision — more money, less experience, and a kid who wants the one that looks fastest.</p>
+        <div class="note-state">Researching</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>How we work</h2>
+      <span class="kicker">Editorial stance</span>
+    </div>
+    <div class="stance">
+      <div>
+        <h3>We filter, we don't rank</h3>
+        <p>In most classes half a dozen chassis will win. Naming a single best one would be wrong most of the time. We narrow the field and tell you what decides the rest.</p>
+      </div>
+      <div>
+        <h3>Missing data stays missing</h3>
+        <p>When a builder doesn't publish a spec, we say so rather than guessing. A blank field is information about the manufacturer, not a mark against the product.</p>
+      </div>
+      <div>
+        <h3>Local support beats spec sheets</h3>
+        <p>The fastest kart is usually the one somebody in your paddock can hand you a part for. We weight regional support as heavily as anything mechanical.</p>
+      </div>
+      <div>
+        <h3>Our own money</h3>
+        <p>We're buying this equipment and racing it. No sponsored placements, no affiliate-driven recommendations. When we get something wrong, we'll say that too.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="sitefoot">
+    <span>Chasing Checkers</span>
+    <span>Two racers, one dream</span>
+    <span class="r">Prototype build</span>
+  </footer>
+</div>
+<div class="checkstrip"></div>
+</body>
+</html>

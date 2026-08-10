@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Frame Is Not The Variable — Chasing Checkers</title>
+<link rel="stylesheet" href="assets/app.css">
+<style>
+.mastB{padding:20px 0 0}
+.barB{display:flex;align-items:center;gap:22px;flex-wrap:wrap;padding-bottom:16px}
+.logoB{width:min(300px,64vw);height:auto;display:block;flex-shrink:0}
+.toolB{margin-left:auto;text-align:right;font-family:var(--mono);font-size:10px;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--grey)}
+.toolB b{display:block;color:var(--gold);font-weight:500;margin-bottom:3px}
+.heroB{position:relative;padding:46px 0 38px;max-width:770px;z-index:1}
+.heroB-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.slash{position:absolute;top:-40px;height:420px;transform:skewX(-16deg)}
+.s1{right:6%;width:54px;background:var(--red);opacity:.10}
+.s2{right:13%;width:14px;background:var(--white);opacity:.06}
+.s3{right:2%;width:8px;background:var(--gold);opacity:.15}
+.ghost8{position:absolute;right:-6px;top:-10px;font-family:var(--disp);font-weight:800;font-style:italic;
+  font-size:250px;line-height:.8;color:#FFF;opacity:.028;letter-spacing:-.04em;user-select:none}
+.heroB h1{font-size:clamp(40px,7.2vw,76px);position:relative;z-index:1}
+.heroB .eyebrow,.heroB .lede,.heroB .check-sm{position:relative;z-index:1}
+.heroB .lede{margin-top:20px}
+.heroB .check-sm{margin-top:24px}
+@media(max-width:780px){
+  .toolB{margin-left:0;text-align:left;width:100%}
+  .ghost8{font-size:150px;opacity:.022}
+}
+</style>
+</head>
+<body>
+<div class="checkstrip"></div>
+<div class="wrap">
+
+  <header class="mastB">
+    <div class="barB">
+      <a href="index.html" aria-label="Chasing Checkers home"><img class="logoB" src="assets/logo-bar.webp" alt="Chasing Checkers"></a>
+      <div class="toolB"><b>Chassis Finder</b>Karting</div>
+    </div>
+    <nav class="nav" aria-label="Discipline">
+      <button aria-current="true">Karting</button>
+      <button disabled>Road Racing<sup>Soon</sup></button>
+      <button disabled>Dirt Oval<sup>Soon</sup></button>
+      <button disabled>Autocross<sup>Soon</sup></button>
+    </nav>
+    <nav class="nav" aria-label="Section" style="border-bottom:none">
+      <button aria-current="true">Chassis</button>
+      <button disabled>Engines &amp; Parts<sup>Soon</sup></button>
+      <button disabled>Tracks &amp; Series<sup>Soon</sup></button>
+    </nav>
+  </header>
+
+  <section class="heroB">
+    <div class="heroB-bg" aria-hidden="true">
+      <div class="ghost8">8</div>
+      <div class="slash s1"></div><div class="slash s2"></div><div class="slash s3"></div>
+    </div>
+    <div class="eyebrow">Pick a class. Pick a budget. See what actually fits.</div>
+    <h1>The frame is not<br>the <em>variable</em>.</h1>
+    <p class="lede">Most chassis in a given class will win races. What separates them is whether the tubing and axle suit the power you're making, and whether anyone within driving distance stocks parts on a Saturday. This tool filters on both. It does not rank.</p>
+    <div class="check-sm"></div>
+  </section>
+
+  <section class="rig" aria-label="Filters">
+    <div class="rig-head"><span>Filters</span><span id="stamp">—</span></div>
+    <div class="row"><label id="lc">Class</label><div class="chips" id="f-class" role="group" aria-labelledby="lc"></div></div>
+    <div class="row"><label id="lb">Buying</label><div class="chips" id="f-cond" role="group" aria-labelledby="lb"></div></div>
+    <div class="row"><label for="f-budget">Budget</label>
+      <div class="budget">
+        <input type="range" id="f-budget" min="1000" max="9000" step="250" value="9000">
+        <span class="budget-val" id="budget-val">No cap</span>
+        <span class="budget-note" id="budget-note">rolling chassis, engine not included</span>
+      </div></div>
+    <div class="row"><label for="f-region">Your region</label><select id="f-region"></select></div>
+    <div class="row"><label id="ls">Order by</label><div class="chips" id="f-sort" role="group" aria-labelledby="ls"></div></div>
+  </section>
+
+  <div class="count" id="count"></div>
+  <main id="results"></main>
+
+  <footer class="ledger">
+    <div><h3>What this can't tell you</h3><p>Which chassis is winning at your home track, and who shows up with a parts trailer. That decides more than anything on this page. Call the track.</p></div>
+    <div><h3>On missing specs</h3><p>Blank fields mean the builder doesn't publish the number, not that the kart is worse. Several of the strongest 206 chassis sell on results, not spec sheets.</p></div>
+    <div><h3>Prices</h3><p>Rolling chassis, from dealer listings, current as of build. They move. Confirm before you order.</p></div>
+    <div><h3>How the checkers work</h3><p>Compliance runs red to gold — red is a stiff frame built for two-stroke power, gold is one that flexes enough to rotate on nine horsepower.</p></div>
+  </footer>
+</div>
+
+<div class="switcher">
+  <div class="switcher-in">
+    <span>Chasing Checkers</span>
+    <span class="sp"><a href="index.html">← Back to home</a></span>
+  </div>
+</div>
+<div class="checkstrip"></div>
+<script src="assets/app.js"></script>
+</body>
+</html>

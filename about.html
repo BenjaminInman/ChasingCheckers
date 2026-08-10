@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Chasing Checkers</title>
+<meta name="description" content="Two racers working up the motorsport ladder, publishing what they learn.">
+<link rel="stylesheet" href="assets/app.css">
+<style>
+.mastB{padding:20px 0 0}
+.barB{display:flex;align-items:center;gap:22px;flex-wrap:wrap;padding-bottom:16px}
+.logoB{width:min(300px,64vw);height:auto;display:block;flex-shrink:0}
+.toolB{margin-left:auto;text-align:right;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--grey)}
+.toolB b{display:block;color:var(--gold);font-weight:500;margin-bottom:3px}
+.sitenav{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--rule)}
+.sitenav a{font-family:var(--disp);font-weight:700;font-style:italic;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--grey);text-decoration:none;padding:11px 16px 9px;border-bottom:3px solid transparent}
+.sitenav a:first-child{padding-left:0}
+.sitenav a:hover{color:var(--white)}
+.sitenav a[aria-current="page"]{color:var(--white);border-bottom-color:var(--red)}
+.pagehero{padding:44px 0 34px;max-width:760px}
+.pagehero h1{font-size:clamp(36px,6.4vw,64px)}
+.pagehero .lede{margin-top:18px}
+.pagehero .check-sm{margin-top:22px}
+.sec{padding-bottom:52px}
+.sec-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-bottom:10px;margin-bottom:22px}
+.sec-head h2{font-family:var(--disp);font-weight:800;font-style:italic;font-size:28px;text-transform:uppercase;line-height:1}
+.sec-head .kicker{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-left:auto}
+.prose{max-width:66ch}
+.prose p{margin-bottom:16px;color:var(--grey-2);font-size:15px;line-height:1.68}
+.prose p strong{color:var(--white);font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
+.card2{background:var(--carbon);border:1px solid var(--rule);padding:18px 20px 20px;text-decoration:none;display:block;transition:border-color .15s}
+a.card2:hover{border-color:var(--gold)}
+.c2-cat{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.c2-title{font-family:var(--disp);font-weight:700;font-style:italic;font-size:20px;text-transform:uppercase;line-height:1.08;margin-bottom:8px}
+.c2-dek{font-size:13px;color:var(--grey);line-height:1.55}
+.c2-state{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#4E555D;margin-top:12px}
+a.card2:hover .c2-state{color:var(--gold)}
+.sitefoot{border-top:1px solid var(--rule);padding:24px 0 44px;display:flex;gap:18px;flex-wrap:wrap;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
+.sitefoot a{color:var(--gold);text-decoration:none}
+.sitefoot .r{margin-left:auto}
+@media(max-width:780px){.toolB{margin-left:0;text-align:left;width:100%}.sitefoot .r{margin-left:0;width:100%}}
+</style>
+</head>
+<body>
+<div class="checkstrip"></div>
+<div class="wrap">
+  <header class="mastB">
+    <div class="barB">
+      <a href="index.html" aria-label="Chasing Checkers home"><img class="logoB" src="assets/logo-bar.webp" alt="Chasing Checkers"></a>
+      <div class="toolB"><b>About</b>Chasing Checkers</div>
+    </div>
+    <nav class="sitenav">
+      <a href="index.html">Home</a>
+      <a href="karting.html">Karting</a>
+      <a href="frame.html">Tools</a>
+      <a href="about.html" aria-current="page">About</a>
+    </nav>
+  </header>
+
+  <section class="pagehero">
+    <div class="eyebrow">Two racers, one dream</div>
+    <h1>About</h1>
+    <p class="lede">A father and son working up the ladder, publishing what we learn on the way — including the expensive mistakes.</p>
+    <div class="check-sm"></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>Why this exists</h2><span class="kicker">The gap</span></div>
+    <div class="prose">
+      <p>Grassroots motorsport runs on tribal knowledge. The information that decides your season — which chassis is quick at your track, which class is growing, who actually stocks parts — lives in paddock conversations and nowhere else. Meanwhile the information that's easy to find is the information that matters least.</p>
+      <p>Racers in better-resourced series have engineers, data, and databases. Everybody below that is working from forum threads and whoever sounds most confident. <strong>That gap is the whole reason for this site.</strong></p>
+      <p>We're not a manufacturer and we're not a shop. We're buying this equipment with our own money and racing it, which means we have the same incentive you do: get it right the first time, because the second time costs another few thousand dollars.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>How we work</h2><span class="kicker">Editorial stance</span></div>
+    <div class="cards">
+      <article class="card2">
+        <div class="c2-cat">01</div>
+        <div class="c2-title">We filter, we don't rank</div>
+        <p class="c2-dek">In most classes half a dozen chassis will win. Naming a single best one would be wrong most of the time. We narrow the field and tell you what decides the rest.</p>
+      </article>
+      <article class="card2">
+        <div class="c2-cat">02</div>
+        <div class="c2-title">Missing data stays missing</div>
+        <p class="c2-dek">When a builder doesn't publish a spec, we say so rather than guessing. A blank field is information about the manufacturer, not a mark against the product.</p>
+      </article>
+      <article class="card2">
+        <div class="c2-cat">03</div>
+        <div class="c2-title">Local support beats spec sheets</div>
+        <p class="c2-dek">The fastest kart is usually the one somebody in your paddock can hand you a part for. We weight regional support as heavily as anything mechanical.</p>
+      </article>
+      <article class="card2">
+        <div class="c2-cat">04</div>
+        <div class="c2-title">No paid placement</div>
+        <p class="c2-dek">Nobody buys a recommendation here. If that ever changes, it will be labelled on the page, not buried in a disclosure link.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>Corrections</h2><span class="kicker">Tell us</span></div>
+    <div class="prose">
+      <p>Specs change, prices move, and dealers come and go. If something here is wrong — especially a tubing spec, a price, or a dealer listing — we want to know. Being corrected in public is cheaper than being confidently wrong in private.</p>
+    </div>
+  </section>
+
+  <footer class="sitefoot">
+    <span>Chasing Checkers</span>
+    <span>Two racers, one dream</span>
+    <span class="r"><a href="index.html">← Home</a></span>
+  </footer>
+</div>
+<div class="checkstrip"></div>
+</body>
+</html>
