@@ -38,6 +38,11 @@
 .feed-note{padding:12px 16px;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--grey-3);border-top:1px solid var(--rule)}
 .feed-empty{padding:18px 16px;color:var(--grey-2);font-size:14px}
+.serieschips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.serieschips button{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  padding:7px 12px;background:var(--carbon);color:var(--grey-2);border:1px solid var(--rule);cursor:pointer}
+.serieschips button:hover{border-color:var(--grey-3);color:var(--white)}
+.serieschips button[aria-pressed="true"]{background:var(--carbon-3);color:var(--gold);border-color:var(--gold-lo)}
 .grp-intro{font-size:14px;color:var(--grey-2);line-height:1.6;max-width:68ch;margin-bottom:18px}
 .srcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
 .src{background:var(--carbon);border:1px solid var(--rule);border-left:3px solid var(--rule);padding:15px 18px 16px;text-decoration:none;display:block;transition:border-color .15s}
@@ -82,7 +87,8 @@ a.src:hover .src-url{color:var(--gold)}
   </section>
 
   <section class="grp" id="latest">
-    <div class="grp-head"><h2>Latest karting headlines</h2><span class="cnt" id="feed-stamp">Loading</span></div>
+    <div class="grp-head"><h2>Latest headlines</h2><span class="cnt" id="feed-stamp">Loading</span></div>
+    <div class="serieschips" id="feed-series" hidden></div>
     <div class="feed" id="feed">
       <div class="feed-empty">Fetching the latest headlines…</div>
     </div>
@@ -228,8 +234,11 @@ a.src:hover .src-url{color:var(--gold)}
 <script src="assets/site.js"></script>
 <script>
 (function(){
-  var wrap=document.getElementById('feed'), stamp=document.getElementById('feed-stamp');
+  var wrap=document.getElementById('feed'),
+      stamp=document.getElementById('feed-stamp'),
+      chips=document.getElementById('feed-series');
   if(!wrap) return;
+  var current='';
 
   function ago(iso){
     if(!iso) return '';
@@ -241,26 +250,50 @@ a.src:hover .src-url{color:var(--gold)}
   }
   function esc(s){var e=document.createElement('span'); e.textContent=s; return e.innerHTML;}
 
-  fetch('/api/news')
-    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-    .then(function(d){
-      if(!d.items || !d.items.length){
-        wrap.innerHTML='<div class="feed-empty">No headlines came back just now. The directory below always works.</div>';
-        if(stamp) stamp.textContent='Unavailable';
-        return;
-      }
-      wrap.innerHTML = d.items.map(function(i){
-        return '<a class="feed-item" href="'+esc(i.link)+'" target="_blank" rel="noopener noreferrer">'+
-               '<span class="ft">'+esc(i.title)+'</span>'+
-               '<span class="feed-meta"><span class="src">'+esc(i.source)+'</span><span>'+esc(ago(i.date))+'</span></span></a>';
-      }).join('') +
-      '<div class="feed-note">Headlines and links only \u2014 stories stay with the publisher</div>';
-      if(stamp) stamp.textContent='Updated '+ago(d.fetched);
-    })
-    .catch(function(){
-      wrap.innerHTML='<div class="feed-empty">Couldn\u2019t reach the headline feed. The directory below always works.</div>';
-      if(stamp) stamp.textContent='Unavailable';
+  // Chips only appear once there's more than one series to choose between.
+  function drawChips(series){
+    if(!chips || !series || series.length<2) return;
+    chips.hidden=false;
+    chips.innerHTML = '<button type="button" data-s="" aria-pressed="true">All</button>' +
+      series.map(function(s){
+        return '<button type="button" data-s="'+esc(s.id)+'" aria-pressed="false">'+esc(s.label)+'</button>';
+      }).join('');
+    chips.addEventListener('click', function(e){
+      var b=e.target.closest('button'); if(!b) return;
+      current=b.getAttribute('data-s')||'';
+      Array.prototype.forEach.call(chips.querySelectorAll('button'), function(x){
+        x.setAttribute('aria-pressed', x===b ? 'true' : 'false');
+      });
+      load(current);
     });
+  }
+
+  function render(d){
+    if(!d.items || !d.items.length){
+      wrap.innerHTML='<div class="feed-empty">Nothing came back for that just now. The directory below always works.</div>';
+      if(stamp) stamp.textContent='Unavailable';
+      return;
+    }
+    wrap.innerHTML = d.items.map(function(i){
+      return '<a class="feed-item" href="'+esc(i.link)+'" target="_blank" rel="noopener noreferrer">'+
+             '<span class="ft">'+esc(i.title)+'</span>'+
+             '<span class="feed-meta"><span class="src">'+esc(i.source)+'</span><span>'+esc(ago(i.date))+'</span></span></a>';
+    }).join('') +
+    '<div class="feed-note">Headlines and links only \u2014 stories stay with the publisher</div>';
+    if(stamp) stamp.textContent='Updated '+ago(d.fetched);
+  }
+
+  function load(series){
+    wrap.innerHTML='<div class="feed-empty">Fetching headlines\u2026</div>';
+    fetch('/api/news'+(series?('?series='+encodeURIComponent(series)):''))
+      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(function(d){ drawChips(d.series); render(d); })
+      .catch(function(){
+        wrap.innerHTML='<div class="feed-empty">Couldn\u2019t reach the headline feed. The directory below always works.</div>';
+        if(stamp) stamp.textContent='Unavailable';
+      });
+  }
+  load('');
 })();
 </script>
 </body>

@@ -6,13 +6,22 @@
 //
 // Adding a source is one entry in SOURCES below.
 
+// Series shown as filter chips, in this order. Add a series here, add sources
+// below that carry its id, and the front end picks it up automatically.
+const SERIES = [
+  { id: 'karting', label: 'Karting' }
+];
+
+// One entry per feed.
+//   series : which series chip(s) this source feeds
+//   filter : optional regex — for general-motorsport feeds, keep only matching
+//            items. Leave null when the whole feed is on-topic.
 const SOURCES = [
   {
     id: 'ekn',
     name: 'eKartingNews',
     url: 'https://www.ekartingnews.com/feed/',
-    // If a feed is general motorsport rather than karting-only, set a filter
-    // regex here and only matching items are kept.
+    series: ['karting'],
     filter: null
   }
 ];
@@ -62,6 +71,7 @@ function parseFeed(xml, src) {
       link,
       source: src.name,
       sourceId: src.id,
+      series: src.series,
       date: d && !isNaN(d) ? d.toISOString() : null
     });
     if (out.length >= PER_SOURCE) break;
@@ -90,16 +100,23 @@ async function fetchSource(src) {
 }
 
 module.exports = async (req, res) => {
-  const results = await Promise.all(SOURCES.map(fetchSource));
+  // ?series=karting narrows the fetch; omitted means everything.
+  const wanted = String((req.query && req.query.series) || '').trim();
+  const active = wanted ? SOURCES.filter(s => s.series.includes(wanted)) : SOURCES;
+
+  const results = await Promise.all(active.map(fetchSource));
 
   const items = [];
   const sources = [];
-  SOURCES.forEach((src, i) => {
+  active.forEach((src, i) => {
     sources.push({ name: src.name, ok: !results[i].error, count: results[i].items.length });
     items.push(...results[i].items);
   });
 
   items.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+
+  // Only advertise series that actually have a working source behind them.
+  const live = SERIES.filter(s => SOURCES.some(src => src.series.includes(s.id)));
 
   // A stale-but-served response beats an empty page if a publisher is down.
   res.setHeader(
@@ -110,6 +127,7 @@ module.exports = async (req, res) => {
   res.status(200).end(
     JSON.stringify({
       fetched: new Date().toISOString(),
+      series: live,
       sources,
       items: items.slice(0, TOTAL)
     })
