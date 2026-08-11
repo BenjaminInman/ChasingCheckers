@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracks — Chasing Checkerz</title>
+<meta name="description" content="US kart tracks by surface, class, national series, and what kind of racing actually happens there.">
+<link rel="stylesheet" href="assets/app.css">
+<style>
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin-bottom:30px}
+.leg{background:var(--carbon);border:1px solid var(--rule);padding:14px 16px 16px}
+.leg.comp{border-left:4px solid var(--gold)}
+.leg.league{border-left:4px solid var(--blue)}
+.leg.amuse{border-left:4px solid var(--red)}
+.leg-name{font-family:var(--disp);font-weight:700;font-style:italic;font-size:19px;text-transform:uppercase;margin-bottom:5px}
+.leg-desc{font-size:12.5px;color:var(--grey);line-height:1.5}
+.rig2{background:var(--carbon);border:1px solid var(--rule);border-left:3px solid var(--red);margin-bottom:28px}
+.rig2 .rig-head{display:flex;justify-content:space-between;gap:10px;padding:10px 20px;border-bottom:1px solid var(--rule);flex-wrap:wrap;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
+.rig2 .rig-head span:last-child{color:var(--gold)}
+.tcount{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);padding-bottom:9px;border-bottom:1px solid var(--rule);margin-bottom:18px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.track{background:var(--carbon);border:1px solid var(--rule);border-left:4px solid var(--rule);margin-bottom:11px;padding:16px 20px 18px}
+.track.comp{border-left-color:var(--gold)}
+.track.league{border-left-color:var(--blue)}
+.track.amuse{border-left-color:var(--red)}
+.t-top{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:11px}
+.t-name{font-family:var(--disp);font-weight:700;font-style:italic;font-size:22px;text-transform:uppercase;line-height:1.08}
+.t-loc{font-family:var(--mono);font-size:10.5px;color:var(--grey);margin-top:3px}
+.t-tier{margin-left:auto;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;white-space:nowrap;flex-shrink:0}
+.tier-comp{background:var(--gold);color:#1A1405}
+.tier-league{background:var(--blue);color:#06131F}
+.tier-amuse{background:var(--red);color:#fff}
+.t-facts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px}
+.fact{font-family:var(--mono);font-size:10px;padding:4px 9px;background:var(--carbon-2);border:1px solid var(--rule);color:var(--grey-2)}
+.fact.surf{color:var(--gold);border-color:var(--gold-lo)}
+.t-classes{font-family:var(--mono);font-size:10.5px;color:var(--grey);line-height:1.7;margin-bottom:10px}
+.t-classes b{color:var(--grey-2);font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:9px;display:block;margin-bottom:3px}
+.t-note{font-size:13px;color:var(--grey-2);line-height:1.55;border-left:2px solid var(--rule);padding-left:11px}
+.t-src{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-3);margin-top:10px}
+.t-src.ok{color:var(--gold)}
+.empty2{background:var(--carbon);border:1px solid var(--rule);border-left:3px solid var(--gold);padding:28px 24px}
+.empty2 h4{font-family:var(--disp);font-weight:700;font-style:italic;font-size:20px;text-transform:uppercase;margin-bottom:8px}
+.empty2 p{font-size:14px;color:var(--grey-2);max-width:60ch}
+@media(max-width:780px){.t-tier{margin-left:0}}
+</style>
+</head>
+<body>
+<div class="checkstrip"></div>
+<div class="wrap">
+  <header class="mastB">
+    <div class="barB">
+      <a href="index.html" aria-label="Chasing Checkerz home"><img class="logoB" src="assets/logo-bar.webp" alt="Chasing Checkerz"></a>
+      <div class="toolB"><b>Tracks</b>United States</div>
+    </div>
+    <nav class="sitenav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="news.html">News</a>
+      <a href="karting.html">Karting</a>
+      <a href="tracks.html" aria-current="page">Tracks</a>
+      <a href="frame.html">Chassis</a>
+      <a href="setup.html">Setup</a>
+    </nav>
+  </header>
+
+  <section class="pagehero">
+    <div class="eyebrow">Know what you're driving to before you load the trailer</div>
+    <h1>Tracks</h1>
+    <p class="lede">Every entry is tagged by what kind of racing actually happens there, and which national series visit. A competition paddock and a birthday-party track both call themselves go-kart tracks. They are not the same place and you should never confuse the two at 6am with a trailer hitched.</p>
+    <div class="check-sm"></div>
+  </section>
+
+  <div class="legend">
+    <div class="leg comp">
+      <div class="leg-name">Competition</div>
+      <p class="leg-desc">Bring your own kart. Sanctioned club, regional or national racing with tech inspection, published class rules, and a points season. Speeds from 45 to 90+ mph.</p>
+    </div>
+    <div class="leg league">
+      <div class="leg-name">League</div>
+      <p class="leg-desc">Track-owned karts, but organised racing — timed heats, standings, adult equipment. Real lap times, no trailer required. A legitimate place to learn racecraft cheaply.</p>
+    </div>
+    <div class="leg amuse">
+      <div class="leg-name">Amusement</div>
+      <p class="leg-desc">Family entertainment. Slow karts, restricted speeds, no championship. Listed so you can find one deliberately — or make sure you don't drive four hours to one by accident.</p>
+    </div>
+  </div>
+
+  <section class="rig2" aria-label="Filters">
+    <div class="rig-head"><span>Filters</span><span id="tstamp">—</span></div>
+    <div class="row"><label id="lt">Type</label><div class="chips" id="f-tier" role="group" aria-labelledby="lt"></div></div>
+    <div class="row"><label id="lsurf">Surface</label><div class="chips" id="f-surf" role="group" aria-labelledby="lsurf"></div></div>
+    <div class="row"><label id="lsit">Setting</label><div class="chips" id="f-site" role="group" aria-labelledby="lsit"></div></div>
+    <div class="row"><label for="f-state">Region</label><select id="f-state"></select></div>
+  </section>
+
+  <div class="tcount" id="tcount"></div>
+  <main id="tresults"></main>
+
+  <section class="notecols">
+    <div>
+      <h3>Coverage, honestly</h3>
+      <p>Seeded from the 2026 national series calendars — CKNA, Route 66, USPKS, SKUSA and Challenge of the Americas. That means every track here demonstrably runs real competition, but it also means the Northeast and South Central are thin, because those regions host regional rather than national rounds. Those gaps are ours, not the sport's.</p>
+    </div>
+    <div>
+      <h3>Why classes go stale</h3>
+      <p>Class lineups change every season and sometimes mid-season. Where we list the national series a track hosts but not its weekly classes, that's because we've confirmed the first and not the second. Always check the track's own schedule before entering.</p>
+    </div>
+    <div>
+      <h3>Run a track?</h3>
+      <p>Send us your surface, your current class list, and your schedule and we'll list it accurately. Corrections are free and we'd rather hear it from you than guess.</p>
+    </div>
+  </section>
+
+  <footer class="sitefoot">
+    <span>Chasing Checkerz</span>
+    <span>Two racers, one dream</span>
+    <span class="r"><a href="index.html">← Home</a></span>
+  </footer>
+</div>
+<div class="checkstrip"></div>
+
+<script>
+const TRACKS=[
+ {name:'Music City Kartplex',city:'Shelbyville',state:'TN',region:'southeast',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:null,series:['CKNA South'],
+  classes:['LO206 Senior','206 Masters 35+','206 Cadet','KA100','Rotax','Tillotson','TaG','Shifter'],
+  note:'Runs the Rhythm & Race series across 19 classes under NKA regulations, plus a 6-hour team enduro with a Le Mans start. Rental fleet is CRG. Hosts a CKNA South round. The most complete class ladder in Middle Tennessee.',
+  verified:true},
+ {name:'New Castle Motorsports Park',city:'New Castle',state:'IN',region:'midwest',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:'1.0 mi',series:['Route 66','USPKS','SKUSA Pro Tour','Challenge of the Americas'],
+  classes:['LO206','KA100','X30','Rotax','Shifter','Kid Kart'],
+  note:'One of the premier circuits in North America and the busiest national venue on the calendar. Mile-long layout with a 950-foot back straight, 28-foot lanes, multiple configurations, MyLaps timing and paved paddock. Opens the Route 66 season and hosts SKUSA SummerNationals and USPKS.',
+  verified:true},
+ {name:'Atlanta Motorsports Park',city:'Dawsonville',state:'GA',region:'southeast',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:'0.85 mi',series:['WKA','ProCup Karting League'],
+  classes:['LO206','Endurance','WKA classes','ProCup Karting League'],
+  note:'Built to CIK Level A/1 standard with 43 feet of elevation change, reputed to be the most dramatic elevation of any kart circuit in the world. Hosts WKA, endurance karting, SCCA and NASA events alongside the road course.',
+  verified:true},
+ {name:'Trackhouse Motorplex',city:'Mooresville',state:'NC',region:'southeast',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:'0.7 mi',series:['USPKS'],
+  classes:null,
+  note:'Formerly GoPro Motorplex. Opened the 2026 USPKS season with the Carolina Grand Prix, drawing 219 entries across 10 categories. Outdoor 11-turn circuit open seven days a week year-round, and it also runs an adult rental programme at around 55 mph, so check which kind of weekend you are arriving for.',
+  verified:true},
+ {name:'103rd Street Sports Complex',city:'Jacksonville',state:'FL',region:'southeast',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:null,series:['CKNA Winter Nationals'],
+  classes:null,
+  note:'Hosts the CKNA Winter Nationals over New Year, one of the largest four-cycle gatherings on the calendar and the traditional season opener for 206 racers.',
+  verified:true},
+ {name:'Ocala Gran Prix',city:'Ocala',state:'FL',region:'southeast',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:null,series:['USPKS'],
+  classes:null,
+  note:'Hosts the USPKS Southern Grand Prix. A long-standing Florida national venue with deep KA fields, and a common winter destination for northern racers chasing seat time.',
+  verified:true},
+ {name:'Daytona International Speedway',city:'Daytona Beach',state:'FL',region:'southeast',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:null,series:['CKNA South'],
+  classes:null,
+  note:'Hosts a CKNA South round on a temporary circuit at the speedway rather than a permanent kart facility. Worth confirming the layout and paddock arrangements before you tow.',
+  verified:true},
+ {name:'Charlotte Motor Speedway',city:'Concord',state:'NC',region:'southeast',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:null,series:['CKNA Spring Nationals'],
+  classes:null,
+  note:'Hosts the CKNA Spring Nationals on a temporary layout at the speedway. An event venue rather than a year-round kart track, so there is no club calendar between nationals.',
+  verified:true},
+ {name:'Finishline Performance Karting',city:'Biloxi',state:'MS',region:'southeast',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:null,series:['CKNA South'],
+  classes:null,
+  note:'Gulf Coast venue hosting a CKNA South round. The nearest national-calendar four-cycle race to the western end of the Southeast.',
+  verified:true},
+ {name:'G&J Kartway',city:'Camden',state:'OH',region:'midwest',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:null,series:['CKNA North'],
+  classes:null,
+  note:'Long-running Ohio facility and a fixture of Midwest four-cycle racing. Opens the CKNA North division season.',
+  verified:true},
+ {name:'Quaker City Motorsports Park',city:'Salem',state:'OH',region:'midwest',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:null,series:['CKNA East'],
+  classes:null,
+  note:'Newer facility that hosted the 2025 CKNA East finale, the largest turnout that division saw that year, and now opens the 2026 East season.',
+  verified:true},
+ {name:'Briggs & Stratton Motorplex at Road America',city:'Elkhart Lake',state:'WI',region:'midwest',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:null,series:['CKNA North','Route 66','USPKS'],
+  classes:null,
+  note:'The kart circuit at Road America, carrying the Briggs name and hosting CKNA North, Route 66 and USPKS rounds. Racing a national round inside one of the great American road racing venues is worth the tow on its own.',
+  verified:true},
+ {name:'Motorsports Country Club of Cincinnati',city:'Batavia',state:'OH',region:'midwest',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:null,series:['SKUSA Pro Tour','USPKS'],
+  classes:null,
+  note:'Hosts the SKUSA Pro Tour SpringNationals and the USPKS Ohio Grand Prix. One of only a handful of US facilities carrying two different national series in the same season.',
+  verified:true},
+ {name:'K1 Circuit',city:'Winchester',state:'CA',region:'west',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:null,series:['Challenge of the Americas'],
+  classes:null,
+  note:'Southern California facility that opens the Challenge of the Americas season, with construction of its surrounding amenities now complete. Described by the series promoter as the new hub of Southern California karting.',
+  verified:true},
+ {name:'Phoenix Kart Racing Association',city:'Glendale',state:'AZ',region:'west',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:null,series:['Challenge of the Americas'],
+  classes:null,
+  note:'One of the stalwart facilities in North American karting and a long-running Challenge of the Americas host. Club-run, which usually means a real weekly calendar rather than national rounds only.',
+  verified:true},
+ {name:'Sonoma Raceway',city:'Sonoma',state:'CA',region:'west',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:null,series:['Challenge of the Americas','ROK Fest West'],
+  classes:null,
+  note:'Northern California kart circuit at the road course, on the Challenge of the Americas schedule fourteen times previously and hosting the 2026 finale, plus ROK Fest West.',
+  verified:true},
+ {name:'Colorado Karting Circuit at Centennial Airport',city:'Centennial',state:'CO',region:'west',tier:'competition',
+  site:'outdoor',surface:'Asphalt',length:null,series:['Challenge of the Americas'],
+  classes:null,
+  note:'Rejuvenated facility new to the Challenge of the Americas calendar for 2026, giving Colorado drivers a home national round. Altitude is a genuine setup variable here in a way it is nowhere else on this list.',
+  verified:true}
+];
+
+const TIERS=[{id:'all',label:'All types'},{id:'competition',label:'Competition'},{id:'league',label:'League'},{id:'amusement',label:'Amusement'}];
+const SURFS=[{id:'all',label:'Any surface'},{id:'Asphalt',label:'Asphalt'},{id:'Concrete',label:'Concrete'},{id:'Dirt',label:'Dirt'},{id:'Clay',label:'Clay'}];
+const SITES=[{id:'all',label:'Either'},{id:'outdoor',label:'Outdoor'},{id:'indoor',label:'Indoor'}];
+const REGS=[{id:'all',name:'Anywhere in the US'},{id:'southeast',name:'Southeast — TN, GA, NC, SC, AL, FL, MS'},{id:'midwest',name:'Midwest — IN, OH, IL, MO, MI, WI'},{id:'northeast',name:'Northeast — NY, PA, NJ, New England'},{id:'southcentral',name:'South Central — TX, OK, LA'},{id:'west',name:'West — CA, AZ, NV, CO'}];
+
+const ts={tier:'all',surf:'all',site:'all',reg:'all'};
+
+function chips(el,items,key){
+  el.innerHTML=items.map(i=>`<button class="chip" aria-pressed="${ts[key]===i.id}" data-v="${i.id}">${i.label}</button>`).join('');
+  el.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{ts[key]=b.dataset.v;chips(el,items,key);drawTracks();}));
+}
+
+function drawTracks(){
+  let list=TRACKS.filter(t=>
+    (ts.tier==='all'||t.tier===ts.tier) &&
+    (ts.surf==='all'||t.surface===ts.surf) &&
+    (ts.site==='all'||t.site===ts.site) &&
+    (ts.reg==='all'||t.region===ts.reg));
+
+  const counts={competition:0,league:0,amusement:0};
+  list.forEach(t=>counts[t.tier]++);
+  document.getElementById('tstamp').textContent=
+    `${counts.competition} competition · ${counts.league} league · ${counts.amusement} amusement`;
+  document.getElementById('tcount').innerHTML=
+    `<span>${list.length} track${list.length===1?'':'s'} match</span><span>Seeded from 2026 national calendars</span>`;
+
+  const out=document.getElementById('tresults');
+  if(!list.length){
+    out.innerHTML=`<div class="empty2"><h4>Nothing here yet</h4>
+      <p>No track in the database matches that combination. The database is seeded rather than complete — that gap is almost certainly ours, not a sign the tracks don't exist. Widen the filters, or send us one to add.</p></div>`;
+    return;
+  }
+  out.innerHTML=list.map(t=>{
+    const tierLabel={competition:'Competition',league:'League',amusement:'Amusement'}[t.tier];
+    const facts=[
+      `<span class="fact surf">${t.surface}</span>`,
+      `<span class="fact">${t.site==='indoor'?'Indoor':'Outdoor'}</span>`,
+      t.length?`<span class="fact">${t.length}</span>`:''
+    ].join('');
+    return `<article class="track ${t.tier==='competition'?'comp':t.tier==='league'?'league':'amuse'}">
+      <div class="t-top">
+        <div><div class="t-name">${t.name}</div><div class="t-loc">${t.city}, ${t.state}</div></div>
+        <span class="t-tier tier-${t.tier==='competition'?'comp':t.tier==='league'?'league':'amuse'}">${tierLabel}</span>
+      </div>
+      <div class="t-facts">${facts}</div>
+      <div class="t-classes"><b>Classes run</b>${t.classes?t.classes.join(' · '):'<span class="unk">not yet confirmed — check the track</span>'}</div>
+      ${t.series&&t.series.length?`<div class="t-classes"><b>National series</b>${t.series.join(' · ')}</div>`:''}
+      <p class="t-note">${t.note}</p>
+      <div class="t-src ${t.verified?'ok':''}">${t.verified?'Verified from track or sanctioning body material':'Unverified — confirm with the track'}</div>
+    </article>`;
+  }).join('');
+}
+
+chips(document.getElementById('f-tier'),TIERS,'tier');
+chips(document.getElementById('f-surf'),SURFS,'surf');
+chips(document.getElementById('f-site'),SITES,'site');
+const sel=document.getElementById('f-state');
+sel.innerHTML=REGS.map(r=>`<option value="${r.id}">${r.name}</option>`).join('');
+sel.addEventListener('change',e=>{ts.reg=e.target.value;drawTracks();});
+drawTracks();
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

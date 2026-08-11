@@ -3,31 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Frame Is Not The Variable — Chasing Checkers</title>
+<title>The Frame Is Not The Variable — Chasing Checkerz</title>
 <link rel="stylesheet" href="assets/app.css">
 <style>
-.mastB{padding:20px 0 0}
-.barB{display:flex;align-items:center;gap:22px;flex-wrap:wrap;padding-bottom:16px}
-.logoB{width:min(300px,64vw);height:auto;display:block;flex-shrink:0}
-.toolB{margin-left:auto;text-align:right;font-family:var(--mono);font-size:10px;
-  letter-spacing:.15em;text-transform:uppercase;color:var(--grey)}
-.toolB b{display:block;color:var(--gold);font-weight:500;margin-bottom:3px}
 .heroB{position:relative;padding:46px 0 38px;max-width:770px;z-index:1}
 .heroB-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .slash{position:absolute;top:-40px;height:420px;transform:skewX(-16deg)}
 .s1{right:6%;width:54px;background:var(--red);opacity:.10}
 .s2{right:13%;width:14px;background:var(--white);opacity:.06}
 .s3{right:2%;width:8px;background:var(--gold);opacity:.15}
-.ghost8{position:absolute;right:-6px;top:-10px;font-family:var(--disp);font-weight:800;font-style:italic;
-  font-size:250px;line-height:.8;color:#FFF;opacity:.028;letter-spacing:-.04em;user-select:none}
+.ghost8{position:absolute;right:-6px;top:-10px;font-family:var(--disp);font-weight:800;font-style:italic;font-size:250px;line-height:.8;color:#FFF;opacity:.028;letter-spacing:-.04em;user-select:none}
 .heroB h1{font-size:clamp(40px,7.2vw,76px);position:relative;z-index:1}
 .heroB .eyebrow,.heroB .lede,.heroB .check-sm{position:relative;z-index:1}
 .heroB .lede{margin-top:20px}
 .heroB .check-sm{margin-top:24px}
-@media(max-width:780px){
-  .toolB{margin-left:0;text-align:left;width:100%}
-  .ghost8{font-size:150px;opacity:.022}
-}
+@media(max-width:780px){.ghost8{font-size:150px;opacity:.022}}
 </style>
 </head>
 <body>
@@ -36,19 +26,17 @@
 
   <header class="mastB">
     <div class="barB">
-      <a href="index.html" aria-label="Chasing Checkers home"><img class="logoB" src="assets/logo-bar.webp" alt="Chasing Checkers"></a>
+      <a href="index.html" aria-label="Chasing Checkerz home"><img class="logoB" src="assets/logo-bar.webp" alt="Chasing Checkerz"></a>
       <div class="toolB"><b>Chassis Finder</b>Karting</div>
     </div>
-    <nav class="nav" aria-label="Discipline">
-      <button aria-current="true">Karting</button>
-      <button disabled>Road Racing<sup>Soon</sup></button>
-      <button disabled>Dirt Oval<sup>Soon</sup></button>
-      <button disabled>Autocross<sup>Soon</sup></button>
-    </nav>
-    <nav class="nav" aria-label="Section" style="border-bottom:none">
-      <button aria-current="true">Chassis</button>
-      <button disabled>Engines &amp; Parts<sup>Soon</sup></button>
-      <button disabled>Tracks &amp; Series<sup>Soon</sup></button>
+    <nav class="sitenav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="news.html">News</a>
+      <a href="karting.html">Karting</a>
+      <a href="tracks.html">Tracks</a>
+      <a href="frame.html" aria-current="page">Chassis</a>
+      <a href="setup.html">Setup</a>
     </nav>
   </header>
 
@@ -90,11 +78,12 @@
 
 <div class="switcher">
   <div class="switcher-in">
-    <span>Chasing Checkers</span>
-    <span class="sp"><a href="index.html">← Back to home</a></span>
+    <span>Chasing Checkerz</span>
+    <span class="sp"><a href="setup.html">Setup sheet</a> &nbsp;·&nbsp; <a href="tracks.html">Tracks</a> &nbsp;·&nbsp; <a href="index.html">← Back to home</a></span>
   </div>
 </div>
 <div class="checkstrip"></div>
 <script src="assets/app.js"></script>
+<script src="assets/site.js"></script>
 </body>
 </html>

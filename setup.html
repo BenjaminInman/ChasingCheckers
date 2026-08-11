@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Setup Sheet — Chasing Checkerz</title>
+<meta name="description" content="A starting-point setup baseline: gearing, tire pressure, and chassis direction from your track, weather, and engine.">
+<link rel="stylesheet" href="assets/app.css">
+<style>
+.warn{background:var(--carbon);border:1px solid var(--rule);border-left:3px solid var(--gold);padding:18px 20px 20px;margin-bottom:30px}
+.warn h4{font-family:var(--disp);font-weight:700;font-style:italic;font-size:19px;text-transform:uppercase;margin-bottom:8px}
+.warn p{font-size:13.5px;color:var(--grey-2);line-height:1.6;max-width:70ch}
+.warn p+p{margin-top:10px}
+.rig3{background:var(--carbon);border:1px solid var(--rule);border-left:3px solid var(--red);margin-bottom:14px}
+.rig3 .rh{display:flex;justify-content:space-between;gap:10px;padding:10px 20px;border-bottom:1px solid var(--rule);flex-wrap:wrap;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
+.rig3 .rh b{color:var(--gold);font-weight:500}
+.num{font-family:var(--mono);font-size:12.5px;padding:7px 10px;border:1px solid var(--rule);background:var(--carbon-2);color:var(--white);width:92px}
+.numwrap{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.numwrap .u{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.hint{font-family:var(--mono);font-size:10px;color:var(--grey-3);margin-top:6px;line-height:1.5;max-width:56ch}
+.out{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin-top:30px}
+.panel{background:var(--carbon);border:1px solid var(--rule);border-top:3px solid var(--rule);padding:18px 20px 20px}
+.panel.gear{border-top-color:var(--gold)}
+.panel.tire{border-top-color:var(--blue)}
+.panel.chas{border-top-color:var(--red)}
+.panel.jet{border-top-color:var(--green)}
+.p-kick{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);margin-bottom:7px}
+.p-title{font-family:var(--disp);font-weight:700;font-style:italic;font-size:22px;text-transform:uppercase;line-height:1.05;margin-bottom:14px}
+.big{font-family:var(--mono);font-size:30px;font-weight:600;color:var(--gold);line-height:1}
+.big small{display:block;font-size:9px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);margin-top:6px}
+.dual{display:flex;gap:26px;flex-wrap:wrap;margin-bottom:16px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-family:var(--mono);font-size:11.5px;margin-bottom:14px}
+.kv dt{color:var(--grey);letter-spacing:.08em;text-transform:uppercase;font-size:9.5px;padding-top:2px;white-space:nowrap}
+.kv dd{color:var(--grey-2)}
+.lev{border-left:2px solid var(--rule);padding-left:12px;margin-bottom:9px}
+.lev b{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;font-weight:500}
+.lev span{font-size:13px;color:var(--grey-2);line-height:1.5}
+.tbl{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11.5px;margin-top:4px}
+.tbl th{text-align:left;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);font-weight:500;padding:0 10px 7px 0;border-bottom:1px solid var(--rule)}
+.tbl td{padding:6px 10px 6px 0;color:var(--grey-2);border-bottom:1px solid var(--carbon-2)}
+.tbl tr.now td{color:var(--gold)}
+.tbl tr.now td:first-child::after{content:' <';font-size:9px}
+.note2{font-size:12.5px;color:var(--grey);line-height:1.55;border-top:1px solid var(--rule);margin-top:14px;padding-top:12px}
+.blank{font-size:13px;color:var(--grey-2);line-height:1.6;border-left:2px solid var(--gold);padding-left:12px}
+</style>
+</head>
+<body>
+<div class="checkstrip"></div>
+<div class="wrap">
+  <header class="mastB">
+    <div class="barB">
+      <a href="index.html" aria-label="Chasing Checkerz home"><img class="logoB" src="assets/logo-bar.webp" alt="Chasing Checkerz"></a>
+      <div class="toolB"><b>Setup Sheet</b>Karting</div>
+    </div>
+    <nav class="sitenav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="news.html">News</a>
+      <a href="karting.html">Karting</a>
+      <a href="tracks.html">Tracks</a>
+      <a href="frame.html">Chassis</a>
+      <a href="setup.html" aria-current="page">Setup</a>
+    </nav>
+  </header>
+
+  <section class="pagehero">
+    <div class="eyebrow">A starting point, not an answer</div>
+    <h1>The setup <em>sheet</em>.</h1>
+    <p class="lede">Set your class, your track, and the weather. This works out your gearing, gives you a tire pressure window, and tells you which direction to move the chassis. What it will not do is pretend to know what's fast at a track it has never seen.</p>
+    <div class="check-sm"></div>
+  </section>
+
+  <div class="warn">
+    <h4>Read this before you trust a number</h4>
+    <p>Gearing here is arithmetic — ratio, rollout and rev limit give a theoretical top speed, and that part is simply true. Everything else is a starting window drawn from how karts generally behave, not from data at your track on your day.</p>
+    <p>Two identical karts on the same afternoon will want different sheets because of driver weight, driving style, and how much rubber went down in the session before yours. Use this to stop guessing from zero. Then change one thing at a time and let the stopwatch overrule it.</p>
+  </div>
+
+  <section class="rig3">
+    <div class="rh"><span>Engine &amp; class</span><b id="k-eng">—</b></div>
+    <div class="row"><label id="l1">Class</label><div class="chips" id="f-cls" role="group" aria-labelledby="l1"></div></div>
+    <div class="row"><label for="f-rev">Rev limit</label>
+      <div>
+        <div class="numwrap"><input class="num" type="number" id="f-rev" step="100"><span class="u">rpm</span></div>
+        <div class="hint">Editable on purpose. On a 206 this is set by the slide in your class rules, and on a two-stroke it varies by engine and series. Put in the number your rulebook gives you, not the one we defaulted to.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rig3">
+    <div class="rh"><span>Track</span><b id="k-trk">—</b></div>
+    <div class="row"><label for="f-track">Preset</label><select id="f-track"></select></div>
+    <div class="row"><label id="l2">Character</label><div class="chips" id="f-char" role="group" aria-labelledby="l2"></div></div>
+    <div class="row"><label id="l3">Elevation</label><div class="chips" id="f-topo" role="group" aria-labelledby="l3"></div></div>
+    <div class="row"><label id="l4">Surface</label><div class="chips" id="f-surf" role="group" aria-labelledby="l4"></div></div>
+    <div class="row"><label for="f-alt">Altitude</label>
+      <div class="numwrap"><input class="num" type="number" id="f-alt" step="50"><span class="u">ft above sea level</span></div></div>
+  </section>
+
+  <section class="rig3">
+    <div class="rh"><span>Conditions</span><b id="k-cond">—</b></div>
+    <div class="row"><label id="l5">Weather</label><div class="chips" id="f-wx" role="group" aria-labelledby="l5"></div></div>
+    <div class="row"><label id="l6">Grip state</label><div class="chips" id="f-grip" role="group" aria-labelledby="l6"></div></div>
+    <div class="row"><label for="f-temp">Ambient</label>
+      <div class="numwrap"><input class="num" type="number" id="f-temp" step="1"><span class="u">°F</span></div></div>
+  </section>
+
+  <section class="rig3">
+    <div class="rh"><span>What's on the kart now</span><b id="k-cur">—</b></div>
+    <div class="row"><label for="f-drv">Driver</label>
+      <div class="numwrap"><input class="num" type="number" id="f-drv" step="1"><span class="u">teeth — clutch or engine sprocket</span></div></div>
+    <div class="row"><label for="f-rear">Rear</label>
+      <div class="numwrap"><input class="num" type="number" id="f-rear" step="1"><span class="u">teeth — axle sprocket</span></div></div>
+    <div class="row"><label for="f-roll">Rollout</label>
+      <div>
+        <div class="numwrap"><input class="num" type="number" id="f-roll" step="0.25"><span class="u">in — rear tire circumference</span></div>
+        <div class="hint">Measure it rather than guessing. Mark the tire and the ground, roll the kart one full revolution with your weight in the seat, measure between the marks. It changes with pressure, wear and heat, and it moves your speed numbers more than people expect.</div>
+      </div>
+    </div>
+  </section>
+
+  <main class="out" id="out"></main>
+
+  <section class="notecols">
+    <div>
+      <h3>The only gearing test that counts</h3>
+      <p>You want to reach the limiter just before you lift at the end of the longest straight — not halfway down it, and not never. If you hit it early you're giving away top speed. If you never get there you're giving away drive off the corner.</p>
+    </div>
+    <div>
+      <h3>Change one thing</h3>
+      <p>Two changes at once means you learn nothing, because you can't tell which one did it. This is the single most expensive habit in club racing, and it costs weekends rather than dollars.</p>
+    </div>
+    <div>
+      <h3>Where these numbers came from</h3>
+      <p>Gearing is arithmetic. Pressure windows and chassis direction are general kart behaviour, stated as ranges because that's what they honestly are. Where we don't have a defensible number for your class, we leave it blank rather than inventing one.</p>
+    </div>
+    <div>
+      <h3>Tell us we're wrong</h3>
+      <p>If a window here is off for your class or your region, we want to hear it. Corrections beat confidence, and this page in particular will get better the more people push back on it.</p>
+    </div>
+  </section>
+
+  <footer class="sitefoot">
+    <span>Chasing Checkerz</span>
+    <span>Two racers, one dream</span>
+    <span class="r"><a href="index.html">← Home</a></span>
+  </footer>
+</div>
+<div class="checkstrip"></div>
+
+<script>
+const CLASSES=[
+  {id:'206sr',  label:'206 Senior',   rev:6100, stroke:4, band:[[4.50,5.00],[4.10,4.60],[3.70,4.20]], drv:17, rear:70},
+  {id:'206mast',label:'206 Masters',  rev:6100, stroke:4, band:[[4.50,5.00],[4.10,4.60],[3.70,4.20]], drv:17, rear:70},
+  {id:'206cad', label:'206 Cadet',    rev:5600, stroke:4, band:null, drv:16, rear:72},
+  {id:'ka100',  label:'KA100',        rev:15000,stroke:2, band:null, drv:11, rear:80},
+  {id:'rotax',  label:'Rotax Max',    rev:13800,stroke:2, band:null, drv:12, rear:78},
+  {id:'kz',     label:'Shifter — KZ', rev:15000,stroke:2, band:null, drv:12, rear:40, gearbox:true},
+  {id:'honda',  label:'Stock Honda',  rev:13000,stroke:2, band:null, drv:12, rear:40, gearbox:true}
+];
+const TRACKS=[
+  {id:'custom', name:'Custom / not listed', char:null, topo:null, surf:null, alt:null},
+  {id:'mck',  name:'Music City Kartplex — Shelbyville, TN', char:'bal',  topo:'roll', surf:'asphalt', alt:790},
+  {id:'ncmp', name:'New Castle Motorsports Park — New Castle, IN', char:'fast', topo:'flat', surf:'asphalt', alt:1050},
+  {id:'amp',  name:'Atlanta Motorsports Park — Dawsonville, GA', char:'bal', topo:'dram', surf:'asphalt', alt:1350},
+  {id:'thmp', name:'Trackhouse Motorplex — Mooresville, NC', char:'tight', topo:'roll', surf:'asphalt', alt:750},
+  {id:'ckc',  name:'Colorado Karting Circuit — Centennial, CO', char:'bal', topo:'flat', surf:'asphalt', alt:5885}
+];
+const CHARS=[{id:'tight',label:'Tight / technical'},{id:'bal',label:'Balanced'},{id:'fast',label:'High speed'}];
+const TOPO=[{id:'flat',label:'Flat'},{id:'roll',label:'Rolling'},{id:'dram',label:'Dramatic'}];
+const SURF=[{id:'asphalt',label:'Asphalt'},{id:'concrete',label:'Concrete'},{id:'dirt',label:'Dirt / clay'}];
+const WX=[{id:'dry',label:'Dry'},{id:'damp',label:'Damp'},{id:'wet',label:'Wet'}];
+const GRIP=[{id:'green',label:'Green / cold'},{id:'normal',label:'Normal'},{id:'rubber',label:'Rubbered in'}];
+
+const S={cls:'206sr',rev:6100,track:'custom',char:'bal',topo:'flat',surf:'asphalt',alt:800,
+         wx:'dry',grip:'normal',temp:72,drv:17,rear:70,roll:34};
+
+function cls(){return CLASSES.find(c=>c.id===S.cls);}
+
+function chips(elId,items,key,after){
+  const el=document.getElementById(elId);
+  el.innerHTML=items.map(i=>`<button class="chip" aria-pressed="${S[key]===i.id}" data-v="${i.id}">${i.label}</button>`).join('');
+  el.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
+    S[key]=b.dataset.v; if(after)after(); chips(elId,items,key,after); render();
+  }));
+}
+function bindNum(id,key,after){
+  const el=document.getElementById(id);
+  el.value=S[key];
+  el.addEventListener('input',e=>{const v=parseFloat(e.target.value);if(!isNaN(v)){S[key]=v;if(after)after();render();}});
+}
+function syncClass(){
+  const c=cls();
+  S.rev=c.rev; S.drv=c.drv; S.rear=c.rear;
+  document.getElementById('f-rev').value=c.rev;
+  document.getElementById('f-drv').value=c.drv;
+  document.getElementById('f-rear').value=c.rear;
+}
+function applyTrack(){
+  const t=TRACKS.find(x=>x.id===S.track);
+  if(!t||t.id==='custom')return;
+  S.char=t.char;S.topo=t.topo;S.surf=t.surf;S.alt=t.alt;
+  document.getElementById('f-alt').value=t.alt;
+  chips('f-char',CHARS,'char');chips('f-topo',TOPO,'topo');chips('f-surf',SURF,'surf');
+}
+
+function mph(ratio){return (S.rev/ratio)*S.roll/1056;}
+function ratio(){return S.rear/S.drv;}
+
+function targetBand(){
+  const c=cls(); if(!c.band)return null;
+  const i={tight:0,bal:1,fast:2}[S.char];
+  let [lo,hi]=c.band[i];
+  if(S.topo==='roll'){lo+=0.10;hi+=0.10;}
+  if(S.topo==='dram'){lo+=0.20;hi+=0.20;}
+  if(S.wx==='damp'){lo+=0.15;hi+=0.15;}
+  if(S.wx==='wet'){lo+=0.30;hi+=0.30;}
+  return [lo,hi];
+}
+
+function pressure(){
+  let lo,hi;
+  if(S.wx==='wet'){lo=16;hi=20;}
+  else if(S.wx==='damp'){lo=13;hi=16;}
+  else{
+    lo=10;hi=13;
+    if(S.temp<55){lo+=1.5;hi+=1.5;}
+    else if(S.temp>90){lo-=1.0;hi-=1.0;}
+    if(S.grip==='green'){lo+=0.5;hi+=0.5;}
+    if(S.grip==='rubber'){lo-=1.0;hi-=1.0;}
+    if(S.surf==='concrete'){lo-=0.5;hi-=0.5;}
+    if(S.surf==='dirt'){lo-=2.0;hi-=2.0;}
+  }
+  return [lo.toFixed(1),hi.toFixed(1)];
+}
+
+function densityAlt(){
+  const pa=S.alt;
+  const isa=15-1.98*(pa/1000);
+  const oat=(S.temp-32)*5/9;
+  return Math.round(pa+120*(oat-isa));
+}
+
+function levers(){
+  const L=[];
+  if(S.wx!=='dry'){
+    L.push(['Rear track','Narrow it, and by more than feels reasonable — this is the biggest single grip lever you have in the wet.']);
+    L.push(['Front track','Go wide. You want every bit of front bite you can find.']);
+    L.push(['Axle','Softest you own. The kart has to flex to find grip that isn\u2019t there.']);
+    L.push(['Seat struts','Add them if you run removable ones. More rear grip is the whole objective.']);
+  } else if(S.grip==='green'){
+    L.push(['Rear track','Narrow. A green or cold surface gives you nothing, so make the kart work for grip.']);
+    L.push(['Axle','Softer, or pull the centre bearing if you run three. Let the frame twist.']);
+    L.push(['Front track','Wider for more front bite and quicker turn-in.']);
+    L.push(['Tire temp','Expect a slow build. Use the out-lap deliberately rather than chasing the first flying lap.']);
+  } else if(S.grip==='rubber'){
+    L.push(['Rear track','Widen it. High grip usually means the kart binds, and this frees it.']);
+    L.push(['Axle','Stiffer, or add the centre bearing. Stop it over-flexing and hopping.']);
+    L.push(['Front track','Narrow slightly to reduce jacking and calm the entry.']);
+    L.push(['Watch for','Hop and push feel identical from the seat but want opposite fixes. Hop is too much grip, push is too little.']);
+  } else {
+    L.push(['Rear track','Start at the middle of your adjustment range and move from there.']);
+    L.push(['Axle','Medium. This is your reference point for the weekend, so write it down.']);
+    L.push(['Front track','Neutral. Change the rear first — it does more.']);
+    L.push(['Method','Bank a baseline lap before you touch anything, or you have nothing to compare against.']);
+  }
+  if(S.topo==='dram'){
+    L.push(['Elevation','Big elevation change loads and unloads the kart mid-corner. Expect to want slightly more rear grip than a flat track of the same layout.']);
+  }
+  return L;
+}
+
+function render(){
+  const c=cls(), r=ratio(), band=targetBand();
+  document.getElementById('k-eng').textContent=c.label+' · '+S.rev.toLocaleString()+' rpm';
+  document.getElementById('k-trk').textContent=(CHARS.find(x=>x.id===S.char)||{}).label+' · '+(TOPO.find(x=>x.id===S.topo)||{}).label;
+  document.getElementById('k-cond').textContent=(WX.find(x=>x.id===S.wx)||{}).label+' · '+S.temp+'°F';
+  document.getElementById('k-cur').textContent=S.drv+'/'+S.rear+' — '+r.toFixed(2)+':1';
+
+  let rows='';
+  for(let d=-4;d<=4;d++){
+    const rt=S.rear+d, rr=rt/S.drv;
+    rows+=`<tr class="${d===0?'now':''}"><td>${rt}</td><td>${rr.toFixed(2)}:1</td><td>${mph(rr).toFixed(1)}</td></tr>`;
+  }
+
+  let bandHtml;
+  if(band){
+    const inside=r>=band[0]&&r<=band[1];
+    bandHtml=`<dl class="kv">
+      <dt>Typical window</dt><dd>${band[0].toFixed(2)} – ${band[1].toFixed(2)}:1</dd>
+      <dt>You are</dt><dd>${inside?'inside that window':(r<band[0]?'geared taller than typical — more top end, less drive':'geared shorter than typical — more drive, less top end')}</dd>
+    </dl>
+    <div class="note2">That window is a place to start on a 206, adjusted for elevation change and weather. It is not a target. Plenty of fast people sit outside it because their track or their weight says so.</div>`;
+  } else if(c.gearbox){
+    bandHtml=`<div class="blank">This is final drive only — it does not account for the internal gearbox ratios, which change the answer completely. Treat the speed figure as top-gear theoretical and nothing more.</div>
+    <div class="note2">We don't publish a final-drive window for shifter classes. Gearing on a six-speed is a per-track, per-gear conversation and a single number would mislead you.</div>`;
+  } else {
+    bandHtml=`<div class="blank">We don't publish a ratio window for this class. We don't have data we'd stand behind, and a made-up range would be worse than a blank space.</div>
+    <div class="note2">The arithmetic above is still correct. Use the limiter test on the longest straight and gear to that.</div>`;
+  }
+
+  const [plo,phi]=pressure();
+  const da=densityAlt();
+
+  let jet='';
+  if(c.stroke===2){
+    const delta=da-2000;
+    const dir = delta>800 ? 'Thinner air than a typical sea-level-ish day — expect to need to lean out from your baseline jet.'
+              : delta<-800 ? 'Denser air than a typical baseline — expect to need to richen from your baseline jet.'
+              : 'Close to a middling baseline. Start where you normally start.';
+    jet=`<div class="panel jet">
+      <div class="p-kick">Two-stroke only</div>
+      <div class="p-title">Air density</div>
+      <div class="big">${da.toLocaleString()}<small>ft density altitude</small></div>
+      <div class="lev" style="margin-top:16px"><b>Direction</b><span>${dir}</span></div>
+      <div class="note2">Density altitude is real physics and this figure is a fair estimate from your altitude and temperature. What it cannot tell you is the jet number, because that depends on your engine, your fuel, your pipe and your builder. Ask whoever built the motor for their baseline, then move from it in the direction above. Running lean is how engines die.</div>
+    </div>`;
+  }
+
+  const tireCopy = S.wx==='dry'
+    ? 'Dry compound is set by your series rulebook, not by preference — in most spec classes you have exactly one legal option. Check the rules before you buy, because it changes between series and sometimes mid-season.'
+    : 'You need a rain tire, and which one is again a rulebook question. Wets run considerably higher pressure than dries and you want them up before you go out, not after.';
+
+  document.getElementById('out').innerHTML=`
+  <div class="panel gear">
+    <div class="p-kick">Arithmetic — this part is exact</div>
+    <div class="p-title">Gearing</div>
+    <div class="dual">
+      <div class="big">${r.toFixed(2)}:1<small>current ratio</small></div>
+      <div class="big">${mph(r).toFixed(1)}<small>mph at limiter</small></div>
+    </div>
+    ${bandHtml}
+    <table class="tbl">
+      <thead><tr><th>Rear</th><th>Ratio</th><th>MPH at limiter</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div class="note2">Theoretical top speed assumes you actually reach the rev limit and ignores drag and drafting. Real trap speed will sit under this. The gap between them is useful information on its own.</div>
+  </div>
+
+  <div class="panel tire">
+    <div class="p-kick">Starting window</div>
+    <div class="p-title">Tires</div>
+    <div class="big">${plo} – ${phi}<small>psi cold, before you go out</small></div>
+    <div class="lev" style="margin-top:16px"><b>Compound</b><span>${tireCopy}</span></div>
+    <div class="lev"><b>How to use this</b><span>Set them cold, then check hot pressure straight off the track and write both down. The hot number and the gain from cold to hot tell you more than either figure alone.</span></div>
+    <div class="note2">This window is drawn from general kart behaviour in these conditions, not from your specific compound. Every tire manufacturer publishes its own guidance and theirs beats ours.</div>
+  </div>
+
+  <div class="panel chas">
+    <div class="p-kick">Direction, not numbers</div>
+    <div class="p-title">Chassis</div>
+    ${levers().map(([a,b])=>`<div class="lev"><b>${a}</b><span>${b}</span></div>`).join('')}
+    <div class="note2">We give direction here rather than measurements on purpose. Your adjustment range depends on your chassis, and a number copied off a website that has never seen your kart is worth less than nothing.</div>
+  </div>
+
+  ${jet}`;
+}
+
+chips('f-cls',CLASSES,'cls',syncClass);
+chips('f-char',CHARS,'char',()=>{S.track='custom';document.getElementById('f-track').value='custom';});
+chips('f-topo',TOPO,'topo',()=>{S.track='custom';document.getElementById('f-track').value='custom';});
+chips('f-surf',SURF,'surf');
+chips('f-wx',WX,'wx');
+chips('f-grip',GRIP,'grip');
+const ts=document.getElementById('f-track');
+ts.innerHTML=TRACKS.map(t=>`<option value="${t.id}">${t.name}</option>`).join('');
+ts.addEventListener('change',e=>{S.track=e.target.value;applyTrack();render();});
+bindNum('f-rev','rev');bindNum('f-alt','alt');bindNum('f-temp','temp');
+bindNum('f-drv','drv');bindNum('f-rear','rear');bindNum('f-roll','roll');
+render();
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

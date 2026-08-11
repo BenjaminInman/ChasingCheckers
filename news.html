@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>News &amp; Results — Chasing Checkerz</title>
+<meta name="description" content="Where to read racing news, find live timing, check championship standings and pull the rulebooks — organised by topic.">
+<link rel="stylesheet" href="assets/app.css">
+<style>
+.topicnav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:26px}
+.topicnav .chip{text-decoration:none}
+.grp{margin-bottom:34px;scroll-margin-top:20px}
+.grp-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-bottom:9px;margin-bottom:16px}
+.grp-head h2{font-family:var(--disp);font-weight:800;font-style:italic;font-size:26px;text-transform:uppercase;line-height:1}
+.grp-head .cnt{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-left:auto}
+.grp-intro{font-size:14px;color:var(--grey-2);line-height:1.6;max-width:68ch;margin-bottom:18px}
+.srcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+.src{background:var(--carbon);border:1px solid var(--rule);border-left:3px solid var(--rule);padding:15px 18px 16px;text-decoration:none;display:block;transition:border-color .15s}
+a.src:hover{border-color:var(--gold);border-left-color:var(--gold)}
+.src.primary{border-left-color:var(--gold)}
+.src-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.src-name{font-family:var(--disp);font-weight:700;font-style:italic;font-size:19px;text-transform:uppercase;line-height:1.1}
+.src-kind{margin-left:auto;font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);white-space:nowrap}
+.src-dek{font-size:13px;color:var(--grey);line-height:1.55}
+.src-url{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--grey-3);margin-top:9px}
+a.src:hover .src-url{color:var(--gold)}
+.why{background:var(--carbon);border:1px solid var(--rule);border-left:3px solid var(--gold);padding:18px 20px 20px;margin-bottom:32px}
+.why h4{font-family:var(--disp);font-weight:700;font-style:italic;font-size:19px;text-transform:uppercase;margin-bottom:8px}
+.why p{font-size:13.5px;color:var(--grey-2);line-height:1.6;max-width:72ch}
+.why p+p{margin-top:10px}
+</style>
+</head>
+<body>
+<div class="checkstrip"></div>
+<div class="wrap">
+  <header class="mastB">
+    <div class="barB">
+      <a href="index.html" aria-label="Chasing Checkerz home"><img class="logoB" src="assets/logo-bar.webp" alt="Chasing Checkerz"></a>
+      <div class="toolB"><b>News &amp; Results</b>Where to look</div>
+    </div>
+    <nav class="sitenav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="news.html" aria-current="page">News</a>
+      <a href="karting.html">Karting</a>
+      <a href="tracks.html">Tracks</a>
+      <a href="frame.html">Chassis</a>
+      <a href="setup.html">Setup</a>
+    </nav>
+  </header>
+
+  <section class="pagehero">
+    <div class="eyebrow">Sources, not a feed</div>
+    <h1>News &amp; <em>results</em>.</h1>
+    <p class="lede">Where to read the news, watch live timing, check championship standings and pull the rulebooks. Organised by what you're trying to do, with a note on which source is authoritative for what.</p>
+    <div class="check-sm"></div>
+  </section>
+
+  <div class="why">
+    <h4>Why this is a directory and not a feed</h4>
+    <p>This site is static, so anything we paste here freezes the moment it publishes. A headline list assembled today would be stale in a fortnight and actively misleading by winter, and a championship table we can't refresh isn't out of date so much as simply wrong.</p>
+    <p>So we point you at the places that <em>do</em> update, and we tell you which one is authoritative. Standings live with the series that scores them. Live timing lives with the timing provider. We'd rather send you to the real thing than mirror it badly.</p>
+  </div>
+
+  <nav class="topicnav" aria-label="Jump to topic">
+    <a class="chip" href="#news">News &amp; media</a>
+    <a class="chip" href="#timing">Results &amp; live timing</a>
+    <a class="chip" href="#rules">Rules &amp; tech</a>
+    <a class="chip" href="#calendars">Series calendars</a>
+    <a class="chip" href="#cars">Cars &amp; prototypes</a>
+  </nav>
+
+  <section class="grp" id="news">
+    <div class="grp-head"><h2>News &amp; media</h2><span class="cnt">Read daily</span></div>
+    <p class="grp-intro">US karting has one dominant news outlet and a handful of secondary ones. If you only check a single source, check the first.</p>
+    <div class="srcs">
+      <a class="src primary" href="https://www.ekartingnews.com" target="_blank" rel="noopener noreferrer">
+        <div class="src-top"><span class="src-name">eKartingNews</span><span class="src-kind">Primary</span></div>
+        <p class="src-dek">The paper of record for North American karting. Event reports, series announcements, schedule changes and entry counts. Its category pages break out by series, which is the fastest way to follow one championship.</p>
+        <div class="src-url">ekartingnews.com &rarr;</div>
+      </a>
+      <a class="src" href="https://www.vroomkart.com" target="_blank" rel="noopener noreferrer">
+        <div class="src-top"><span class="src-name">Vroom Karting</span><span class="src-kind">International</span></div>
+        <p class="src-dek">International coverage with a European centre of gravity. Useful for FIA Karting, OK and KZ context that US outlets cover thinly.</p>
+        <div class="src-url">vroomkart.com &rarr;</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="grp" id="timing">
+    <div class="grp-head"><h2>Results &amp; live timing</h2><span class="cnt">Authoritative</span></div>
+    <p class="grp-intro">Standings belong to whoever scores them. Each series publishes its own points, and those pages are the only version worth trusting — a championship table copied anywhere else is a snapshot of a moment that has already passed.</p>
+    <div class="srcs">
+      <a class="src primary" href="https://www.cupkarts.com/schedule/" target="_blank" rel="noopener noreferrer">
+        <div class="src-top"><span class="src-name">Cup Karts North America</span><span class="src-kind">Four-cycle</span></div>
+        <p class="src-dek">The governing series for national 206 racing, split into South, North, East and Canada divisions plus the Winter and Spring Nationals. If you race a 206 seriously, this is your championship.</p>
+        <div class="src-url">cupkarts.com &rarr;</div>
+      </a>
+      <a class="src" href="https://www.superkartsusa.com/admin-mylaps-results.html" target="_blank" rel="noopener noreferrer">
+        <div class="src-top"><span class="src-name">SKUSA — MyLaps results</span><span class="src-kind">Timing</span></div>
+        <p class="src-dek">Pro Tour and ProKart Challenge results through MyLaps, alongside series points for the Pro Tour and Winter Series. Shifter and X30 racing lives here.</p>
+        <div class="src-url">superkartsusa.com &rarr;</div>
+      </a>
+      <a class="src" href="https://www.uspks.com" target="_blank" rel="noopener noreferrer">
+        <div class="src-top"><span class="src-name">US Pro Kart Series</span><span class="src-kind">National</span></div>
+        <p class="src-dek">Now in its fourteenth season and one of the deepest KA and X30 fields in the country. Round-by-round results and points.</p>
+        <div class="src-url">uspks.com &rarr;</div>
+      </a>
+      <a class="src" href="https://raceselect.com" target="_blank" rel="noopener noreferrer">
+        <div class="src-top"><span class="src-name">RaceSelect</span><span class="src-kind">Entry</span></div>
+        <p class="src-dek">Where several national series take registration. Worth an account before you need one — late fees are real and entry caps fill.</p>
+        <div class="src-url">raceselect.com &rarr;</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="grp" id="rules">
+    <div class="grp-head"><h2>Rules &amp; tech</h2><span class="cnt">Before you buy</span></div>
+    <p class="grp-intro">The rulebook decides your tire, your engine sealing and your weight, and it changes between series and sometimes mid-season. Read the current one rather than a forum summary of last year's.</p>
+    <div class="srcs">
+      <a class="src primary" href="https://www.briggsracing.com" target="_blank" rel="noopener noreferrer">
+        <div class="src-top"><span class="src-name">Briggs Racing — LO206</span><span class="src-kind">Engine rules</span></div>
+        <p class="src-dek">The source for the 206 package itself: sealed engine rules, slide and restrictor specs by class, and the technical bulletins that occasionally change what's legal. Your rev limit comes from here.</p>
+        <div class="src-url">briggsracing.com &rarr;</div>
+      </a>
+      <a class="src" href="https://www.worldkarting.com" target="_blank" rel="noopener noreferrer">
+        <div class="src-top"><span class="src-name">World Karting Association</span><span class="src-kind">Sanctioning</span></div>
+        <p class="src-dek">One of the oldest US sanctioning bodies, with its own tech rules and regional programmes. Relevant if your track runs under WKA rather than club or NKA regulations.</p>
+        <div class="src-url">worldkarting.com &rarr;</div>
+      </a>
+      <a class="src" href="https://www.superkartsusa.com" target="_blank" rel="noopener noreferrer">
+        <div class="src-top"><span class="src-name">SKUSA rulebook</span><span class="src-kind">Shifter &amp; X30</span></div>
+        <p class="src-dek">Updated in-season and dated on the page, which tells you how live it is. The reference for shifter class structure and weights.</p>
+        <div class="src-url">superkartsusa.com &rarr;</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="grp" id="calendars">
+    <div class="grp-head"><h2>Series calendars</h2><span class="cnt">Plan the season</span></div>
+    <p class="grp-intro">Our <a href="index.html" style="color:var(--gold)">ticker</a> carries the national rounds and our <a href="tracks.html" style="color:var(--gold)">track finder</a> tags which series visit where. These are the sources both are built from.</p>
+    <div class="srcs">
+      <a class="src" href="https://www.route66kartracing.com/schedule/" target="_blank" rel="noopener noreferrer">
+        <div class="src-top"><span class="src-name">Route 66 Sprint Series</span><span class="src-kind">Midwest</span></div>
+        <p class="src-dek">The premier Midwest regional championship for decades, running IAME and Briggs classes across four events. The natural step up from club racing if you're north of the Ohio.</p>
+        <div class="src-url">route66kartracing.com &rarr;</div>
+      </a>
+      <a class="src" href="https://rokcupusa.com/calendar/" target="_blank" rel="noopener noreferrer">
+        <div class="src-top"><span class="src-name">ROK Cup USA</span><span class="src-kind">Vortex</span></div>
+        <p class="src-dek">Florida Winter Tour, ROK Festivals and ROK the RIO in Las Vegas. The winter programme is the reason a lot of northern racers point their trailers south in January.</p>
+        <div class="src-url">rokcupusa.com &rarr;</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="grp" id="cars">
+    <div class="grp-head"><h2>Cars &amp; prototypes</h2><span class="cnt">Rung 04 and up</span></div>
+    <p class="grp-intro">Where the ladder goes after karting. We're not there yet, so treat these as the manufacturers' own material rather than anything we've verified from a seat.</p>
+    <div class="srcs">
+      <a class="src" href="https://pragaglobal.com/cars/praga-r1/" target="_blank" rel="noopener noreferrer">
+        <div class="src-top"><span class="src-name">Praga R1</span><span class="src-kind">Prototype</span></div>
+        <p class="src-dek">Carbon monocoque, turbocharged Renault four, Hewland six-speed sequential on paddles with flat-shift and auto-blip, centrifugal clutch and no clutch pedal. Around 3G lateral. Note what that means for what karting actually prepares you for.</p>
+        <div class="src-url">pragaglobal.com &rarr;</div>
+      </a>
+      <a class="src" href="https://www.radicalmotorsport.com" target="_blank" rel="noopener noreferrer">
+        <div class="src-top"><span class="src-name">Radical Motorsport</span><span class="src-kind">Prototype</span></div>
+        <p class="src-dek">SR1 and SR3 and the arrive-and-drive programmes built around them. Confirm the shift mechanism on the specific car and model year you'd be driving, because it varies.</p>
+        <div class="src-url">radicalmotorsport.com &rarr;</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="notecols">
+    <div>
+      <h3>What earns a place here</h3>
+      <p>A source has to update on its own and be authoritative for something specific. We don't list aggregators that repackage the same reporting, and we don't list forums.</p>
+    </div>
+    <div>
+      <h3>Standings live with the series</h3>
+      <p>We deliberately don't mirror championship points. Whoever scores the championship publishes the only version that's current, and a copy here would be wrong within a weekend.</p>
+    </div>
+    <div>
+      <h3>Something missing?</h3>
+      <p>If you run a regional series or a timing service that belongs in here, tell us. Regional calendars are the biggest gap, particularly in the Northeast and Texas.</p>
+    </div>
+  </section>
+
+  <footer class="sitefoot">
+    <span>Chasing Checkerz</span>
+    <span>Two racers, one dream</span>
+    <span class="r"><a href="index.html">← Home</a></span>
+  </footer>
+</div>
+<div class="checkstrip"></div>
+<script src="assets/site.js"></script>
+</body>
+</html>
