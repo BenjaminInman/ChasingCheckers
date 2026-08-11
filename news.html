@@ -10,9 +10,34 @@
 .topicnav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:26px}
 .topicnav .chip{text-decoration:none}
 .grp{margin-bottom:34px;scroll-margin-top:20px}
-.grp-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-bottom:9px;margin-bottom:16px}
+/* Section banner: checkered-flag texture skewed to match the logo's slant,
+   held to ~5% opacity so it reads as material rather than decoration. */
+.grp-head{position:relative;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:11px 16px 11px 17px;margin-bottom:18px;overflow:hidden;
+  background:var(--carbon-2);border:1px solid var(--rule);border-left:3px solid var(--red)}
+.grp-head::after{content:"";position:absolute;top:0;right:0;bottom:0;width:44%;
+  background-image:repeating-conic-gradient(#fff 0% 25%,transparent 0% 50%);
+  background-size:13px 13px;opacity:.055;transform:skewX(-14deg);transform-origin:top right;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 80%);
+  mask-image:linear-gradient(90deg,transparent,#000 80%);pointer-events:none}
+.grp-head h2,.grp-head .cnt{position:relative;z-index:1}
 .grp-head h2{font-family:var(--disp);font-weight:800;font-style:italic;font-size:26px;text-transform:uppercase;line-height:1}
 .grp-head .cnt{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-left:auto}
+@media (prefers-reduced-motion:no-preference){.feed-item{transition:border-color .15s ease}}
+
+/* Live headlines */
+.feed{border:1px solid var(--rule);background:var(--carbon)}
+.feed-item{display:block;padding:13px 16px;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit}
+.feed-item:last-child{border-bottom:0}
+.feed-item:hover,.feed-item:focus-visible{background:var(--carbon-2);border-color:var(--grey-3)}
+.feed-item .ft{display:block;font-size:14.5px;line-height:1.4;color:var(--white)}
+.feed-item:hover .ft{color:var(--gold)}
+.feed-meta{display:flex;gap:10px;align-items:center;margin-top:6px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
+.feed-meta .src{color:var(--gold)}
+.feed-note{padding:12px 16px;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--grey-3);border-top:1px solid var(--rule)}
+.feed-empty{padding:18px 16px;color:var(--grey-2);font-size:14px}
 .grp-intro{font-size:14px;color:var(--grey-2);line-height:1.6;max-width:68ch;margin-bottom:18px}
 .srcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
 .src{background:var(--carbon);border:1px solid var(--rule);border-left:3px solid var(--rule);padding:15px 18px 16px;text-decoration:none;display:block;transition:border-color .15s}
@@ -56,13 +81,21 @@ a.src:hover .src-url{color:var(--gold)}
     <div class="check-sm"></div>
   </section>
 
+  <section class="grp" id="latest">
+    <div class="grp-head"><h2>Latest karting headlines</h2><span class="cnt" id="feed-stamp">Loading</span></div>
+    <div class="feed" id="feed">
+      <div class="feed-empty">Fetching the latest headlines…</div>
+    </div>
+  </section>
+
   <div class="why">
-    <h4>Why this is a directory and not a feed</h4>
-    <p>This site is static, so anything we paste here freezes the moment it publishes. A headline list assembled today would be stale in a fortnight and actively misleading by winter, and a championship table we can't refresh isn't out of date so much as simply wrong.</p>
-    <p>So we point you at the places that <em>do</em> update, and we tell you which one is authoritative. Standings live with the series that scores them. Live timing lives with the timing provider. We'd rather send you to the real thing than mirror it badly.</p>
+    <h4>Headlines live, everything else linked</h4>
+    <p>The headlines above are pulled straight from the publishers a few times an hour — title, source and date only. Read the story on their site, where it belongs. We don't mirror articles and we don't rewrite them.</p>
+    <p>Everything below is a directory rather than a feed, and deliberately so. Standings live with the series that scores them; live timing lives with the timing provider. A championship table we couldn't refresh wouldn't be out of date so much as simply wrong — so we point you at the source that is authoritative, and say which one that is.</p>
   </div>
 
   <nav class="topicnav" aria-label="Jump to topic">
+    <a class="chip" href="#latest">Latest headlines</a>
     <a class="chip" href="#news">News &amp; media</a>
     <a class="chip" href="#timing">Results &amp; live timing</a>
     <a class="chip" href="#rules">Rules &amp; tech</a>
@@ -193,5 +226,42 @@ a.src:hover .src-url{color:var(--gold)}
 </div>
 <div class="checkstrip"></div>
 <script src="assets/site.js"></script>
+<script>
+(function(){
+  var wrap=document.getElementById('feed'), stamp=document.getElementById('feed-stamp');
+  if(!wrap) return;
+
+  function ago(iso){
+    if(!iso) return '';
+    var s=(Date.now()-new Date(iso))/1000;
+    if(s<3600) return Math.max(1,Math.round(s/60))+'m ago';
+    if(s<86400) return Math.round(s/3600)+'h ago';
+    var d=Math.round(s/86400);
+    return d<8 ? d+'d ago' : new Date(iso).toLocaleDateString(undefined,{month:'short',day:'numeric'});
+  }
+  function esc(s){var e=document.createElement('span'); e.textContent=s; return e.innerHTML;}
+
+  fetch('/api/news')
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(function(d){
+      if(!d.items || !d.items.length){
+        wrap.innerHTML='<div class="feed-empty">No headlines came back just now. The directory below always works.</div>';
+        if(stamp) stamp.textContent='Unavailable';
+        return;
+      }
+      wrap.innerHTML = d.items.map(function(i){
+        return '<a class="feed-item" href="'+esc(i.link)+'" target="_blank" rel="noopener noreferrer">'+
+               '<span class="ft">'+esc(i.title)+'</span>'+
+               '<span class="feed-meta"><span class="src">'+esc(i.source)+'</span><span>'+esc(ago(i.date))+'</span></span></a>';
+      }).join('') +
+      '<div class="feed-note">Headlines and links only \u2014 stories stay with the publisher</div>';
+      if(stamp) stamp.textContent='Updated '+ago(d.fetched);
+    })
+    .catch(function(){
+      wrap.innerHTML='<div class="feed-empty">Couldn\u2019t reach the headline feed. The directory below always works.</div>';
+      if(stamp) stamp.textContent='Unavailable';
+    });
+})();
+</script>
 </body>
 </html>
