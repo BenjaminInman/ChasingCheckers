@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Who's Winning — Chasing Checkerz</title>
+<meta name="description" content="2026 national kart race winners by class, with the chassis they won on. Curated from published race reports, with sources.">
+<link rel="stylesheet" href="assets/app.css">
+<style>
+.serieschips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.serieschips button{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  padding:7px 12px;background:var(--carbon);color:var(--grey-2);border:1px solid var(--rule);cursor:pointer}
+.serieschips button:hover{border-color:var(--grey-3);color:var(--white)}
+.serieschips button[aria-pressed="true"]{background:var(--carbon-3);color:var(--gold);border-color:var(--gold-lo)}
+.grp{margin-bottom:40px}
+.grp-head{position:relative;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:11px 16px 11px 17px;margin-bottom:18px;overflow:hidden;
+  background:var(--carbon-2);border:1px solid var(--rule);border-left:3px solid var(--red)}
+.grp-head::after{content:"";position:absolute;top:0;right:0;bottom:0;width:44%;
+  background-image:repeating-conic-gradient(#fff 0% 25%,transparent 0% 50%);
+  background-size:13px 13px;opacity:.055;transform:skewX(-14deg);transform-origin:top right;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 80%);
+  mask-image:linear-gradient(90deg,transparent,#000 80%);pointer-events:none}
+.grp-head h2,.grp-head .cnt{position:relative;z-index:1}
+.grp-head h2{font-family:var(--disp);font-weight:800;font-style:italic;font-size:26px;text-transform:uppercase;line-height:1}
+.grp-head .cnt{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-left:auto}
+
+.wtable{border:1px solid var(--rule);background:var(--carbon)}
+.wrow{display:grid;grid-template-columns:88px 1fr 150px 130px;gap:14px;align-items:baseline;
+  padding:12px 15px;border-bottom:1px solid var(--rule)}
+.wrow:last-child{border-bottom:0}
+.wrow:hover{background:var(--carbon-2)}
+.whead{background:var(--carbon-2);font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--grey-3)}
+.whead:hover{background:var(--carbon-2)}
+.wdate{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--grey)}
+.wdriver{font-family:var(--disp);font-weight:800;font-style:italic;text-transform:uppercase;
+  font-size:17px;line-height:1.15;color:var(--white)}
+.wev{display:block;margin-top:3px;font-family:var(--mono);font-size:9px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--grey-3)}
+.wev a{color:var(--grey-3);text-decoration:underline}
+.wev a:hover{color:var(--gold)}
+.wclass{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.wchassis{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--white)}
+.wteam{display:block;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-3);margin-top:3px}
+.wnote{grid-column:1/-1;font-family:var(--mono);font-size:9px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--red);margin-top:2px}
+@media (max-width:760px){
+  .wrow{grid-template-columns:1fr 1fr;gap:8px}
+  .whead{display:none}
+  .wdate{order:3}
+}
+.tally{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.tbox{border:1px solid var(--rule);background:var(--carbon);padding:13px 14px}
+.tname{font-family:var(--disp);font-weight:800;font-style:italic;text-transform:uppercase;font-size:17px;color:var(--white)}
+.tbar{height:4px;background:var(--carbon-3);margin:8px 0 6px}
+.tbar span{display:block;height:100%;background:var(--red)}
+.tcount{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--grey)}
+.why{border:1px solid var(--rule);background:var(--carbon);padding:16px 18px}
+.why h4{font-family:var(--disp);font-weight:800;font-style:italic;text-transform:uppercase;font-size:18px;margin-bottom:8px}
+.why p{font-size:14px;line-height:1.6;color:var(--grey-2);margin-bottom:9px}
+.why p:last-child{margin-bottom:0}
+</style>
+</head>
+<body>
+<div class="checkstrip"></div>
+<div class="wrap">
+  <header class="mastB">
+    <div class="barB">
+      <a href="index.html" aria-label="Chasing Checkerz home"><img class="logoB" src="assets/logo-bar.webp" alt="Chasing Checkerz"></a>
+      <div class="toolB"><b>Who's winning</b>Chasing Checkerz</div>
+    </div>
+    <nav class="sitenav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="news.html">News</a>
+      <a href="events.html">Events</a>
+      <a href="winners.html" aria-current="page">Winners</a>
+      <a href="karting.html">Karting</a>
+      <a href="tracks.html">Tracks</a>
+      <a href="frame.html">Chassis</a>
+      <a href="setup.html">Setup</a>
+      <a href="review.html">Reviews</a>
+    </nav>
+  </header>
+
+  <section class="pagehero">
+    <div class="eyebrow">2026 season &middot; national series</div>
+    <h1>Who's <em>winning</em>, and on what.</h1>
+    <p class="lede">Main event winners from the US national series, with the chassis under them. Nobody publishes this as a table &mdash; it sits scattered through race reports &mdash; so we're collecting it. If you're about to spend four thousand dollars on a frame, this is more useful than a spec sheet.</p>
+  </section>
+
+  <section class="grp">
+    <div class="grp-head"><h2>Race winners</h2><span class="cnt" id="w-cnt"></span></div>
+    <div class="serieschips" id="w-filter"></div>
+    <div class="wtable" id="w-table"></div>
+  </section>
+
+  <section class="grp">
+    <div class="grp-head"><h2>Chassis tally</h2><span class="cnt" id="t-cnt"></span></div>
+    <div class="tally" id="w-tally"></div>
+  </section>
+
+  <div class="why">
+    <h4>How to read this, and how not to</h4>
+    <p>Every row comes from a published race report and links back to it. Where a result was provisional at the time of the report, or changed in technical inspection, it says so on the row.</p>
+    <p>The tally counts main event wins by chassis brand, and it is <em>not</em> a ranking of which chassis is fastest. Entry numbers vary wildly by brand &mdash; a marque with thirty karts in a class will collect more wins than one with three, without being any quicker. Team quality, engine builder and driver matter more than the frame in most of these results. What the tally is genuinely good for is telling you which equipment has real support in the national paddock, because that is what determines whether you can get parts and setup help at your track.</p>
+    <p>Scope right now is the national series &mdash; SKUSA Pro Tour and USPKS. Regional and club racing is where most people actually race, and it's not covered here yet. Sprint karting only, no dirt or road racing.</p>
+  </div>
+
+  <footer class="sitefoot">
+    <span>Chasing Checkerz</span>
+    <span>Chase the dream. Live the race.</span>
+    <span class="r">Prototype build</span>
+  </footer>
+</div>
+<script src="assets/site.js"></script>
+<script>
+/* 2026 national main-event winners.
+   Hand-collected from published race reports — there is no results API and
+   chassis is almost never in the timing data, only in the written reports.
+   Add a row after each national weekend. Keep `src` pointing at the report. */
+(function(){
+  var WINS = [
+    { date:'2026-08-09', series:'USPKS', event:'Cincinnati Grand Prix', where:'Batavia, OH',
+      cls:'Pro Shifter', driver:'Gavin Bayliff', team:'TKG', chassis:'Birel ART',
+      src:'https://www.ekartingnews.com/2026/08/09/ekn-trackside-2026-united-states-pro-kart-series-ohio-grand-prix-sunday-report/' },
+
+    { date:'2026-08-09', series:'USPKS', event:'Cincinnati Grand Prix', where:'Batavia, OH',
+      cls:'KA100 Senior', driver:'James Overbeck', team:'BJR', chassis:'Tony Kart',
+      src:'https://www.ekartingnews.com/2026/08/09/ekn-trackside-2026-united-states-pro-kart-series-ohio-grand-prix-sunday-report/' },
+
+    { date:'2026-08-09', series:'USPKS', event:'Cincinnati Grand Prix', where:'Batavia, OH',
+      cls:'KA100 Junior', driver:'Lucas Palacio', team:'RPG', chassis:'Kosmic',
+      src:'https://www.ekartingnews.com/2026/08/09/ekn-trackside-2026-united-states-pro-kart-series-ohio-grand-prix-sunday-report/' },
+
+    { date:'2026-07-26', series:'SKUSA Pro Tour', event:'SummerNationals', where:'New Castle, IN',
+      cls:'Pro Shifter', driver:'Matheus Morgatto', team:'Velocity Racing', chassis:'Sodikart',
+      note:'Won all three main events on the way to the title',
+      src:'https://www.ekartingnews.com/2026/07/26/ekn-trackside-2026-superkarts-usa-pro-tour-summernationals-sunday-report/' },
+
+    { date:'2026-07-26', series:'SKUSA Pro Tour', event:'SummerNationals', where:'New Castle, IN',
+      cls:'KA100 Junior', driver:'Nicolas Orbezo', team:'IRM', chassis:'Tony Kart',
+      src:'https://www.ekartingnews.com/2026/07/26/ekn-trackside-2026-superkarts-usa-pro-tour-summernationals-sunday-report/' },
+
+    { date:'2026-07-25', series:'SKUSA Pro Tour', event:'SummerNationals Rd 5', where:'New Castle, IN',
+      cls:'Pro X30', driver:'Gus Lawrence', team:'RPG', chassis:'Kosmic',
+      note:'Prefinal and Final double',
+      src:'https://www.ekartingnews.com/2026/07/25/ekn-trackside-2026-superkarts-usa-pro-tour-summernationals-saturday-report/' },
+
+    { date:'2026-06-14', series:'SKUSA Pro Tour', event:'SpringNationals', where:'Batavia, OH',
+      cls:'KA100 Junior', driver:'Marco Sammut', team:'BJR', chassis:'LN Kart',
+      note:'Awarded after the on-track winner failed technical inspection',
+      src:'https://www.ekartingnews.com/2026/06/14/ekn-trackside-2026-superkarts-usa-pro-tour-springnationals-sunday-report/' },
+
+    { date:'2026-04-12', series:'USPKS', event:'Carolina Grand Prix', where:'Mooresville, NC',
+      cls:'KA100 Senior', driver:'Pauly Massimino', team:'BJR', chassis:'LN Kart',
+      note:'Reported as provisional winner',
+      src:'https://www.uspks.com/race-report-2026-united-states-pro-kart-series-carolina-grand-prix/' }
+  ];
+
+  var table=document.getElementById('w-table'), tally=document.getElementById('w-tally'),
+      filter=document.getElementById('w-filter'), cnt=document.getElementById('w-cnt'),
+      tcnt=document.getElementById('t-cnt');
+  if(!table) return;
+  var pick='';
+
+  function esc(s){var e=document.createElement('span'); e.textContent=s; return e.innerHTML;}
+  function d(s){return new Date(s+'T12:00:00').toLocaleDateString(undefined,{month:'short',day:'numeric'});}
+
+  var classes=[]; WINS.forEach(function(w){ if(classes.indexOf(w.cls)<0) classes.push(w.cls); });
+  classes.sort();
+
+  filter.innerHTML='<button type="button" data-c="" aria-pressed="true">All classes</button>'+
+    classes.map(function(c){ return '<button type="button" data-c="'+esc(c)+'" aria-pressed="false">'+esc(c)+'</button>'; }).join('');
+
+  filter.addEventListener('click', function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    pick=b.getAttribute('data-c')||'';
+    Array.prototype.forEach.call(filter.querySelectorAll('button'), function(x){
+      x.setAttribute('aria-pressed', x===b?'true':'false');
+    });
+    draw();
+  });
+
+  function draw(){
+    var rows=WINS.filter(function(w){ return !pick || w.cls===pick; })
+                 .sort(function(a,b){ return a.date<b.date?1:-1; });
+
+    cnt.textContent = rows.length + (rows.length===1?' win':' wins');
+
+    table.innerHTML =
+      '<div class="wrow whead"><span>Date</span><span>Winner</span><span>Class</span><span>Chassis</span></div>' +
+      rows.map(function(w){
+        return '<div class="wrow">'+
+          '<span class="wdate">'+esc(d(w.date))+'</span>'+
+          '<span><span class="wdriver">'+esc(w.driver)+'</span>'+
+            '<span class="wev"><a href="'+esc(w.src)+'" target="_blank" rel="noopener noreferrer">'+
+              esc(w.series+' '+w.event)+'</a> &middot; '+esc(w.where)+'</span></span>'+
+          '<span class="wclass">'+esc(w.cls)+'</span>'+
+          '<span><span class="wchassis">'+esc(w.chassis)+'</span>'+
+            '<span class="wteam">'+esc(w.team)+'</span></span>'+
+          (w.note?'<span class="wnote">'+esc(w.note)+'</span>':'')+
+        '</div>';
+      }).join('');
+
+    // tally always reflects the whole season, not the current filter
+    var counts={};
+    WINS.forEach(function(w){ counts[w.chassis]=(counts[w.chassis]||0)+1; });
+    var list=Object.keys(counts).map(function(k){ return {k:k,n:counts[k]}; })
+                  .sort(function(a,b){ return b.n-a.n || (a.k<b.k?-1:1); });
+    var max=list.length?list[0].n:1;
+    tcnt.textContent = list.length + ' marques';
+    tally.innerHTML = list.map(function(x){
+      return '<div class="tbox"><div class="tname">'+esc(x.k)+'</div>'+
+        '<div class="tbar"><span style="width:'+Math.round(x.n/max*100)+'%"></span></div>'+
+        '<div class="tcount">'+x.n+(x.n===1?' win':' wins')+'</div></div>';
+    }).join('');
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
