@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop — Chasing Checkerz</title>
+<meta name="description" content="Chasing Checkerz merch — apparel, headwear, drinkware, race gear and decals. Opening soon.">
+<link rel="stylesheet" href="assets/app.css">
+<style>
+.board{border:1px solid var(--rule);background:var(--carbon);padding:10px;margin-bottom:8px}
+.board img{display:block;width:100%;height:auto}
+.boardnote{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--grey-3);margin-bottom:34px}
+.lines{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-bottom:34px}
+.line{position:relative;padding:16px 17px;background:var(--carbon);border:1px solid var(--rule);
+  border-left:3px solid var(--red);overflow:hidden}
+.line::after{content:"";position:absolute;top:0;right:0;bottom:0;width:38%;
+  background-image:repeating-conic-gradient(#fff 0% 25%,transparent 0% 50%);
+  background-size:11px 11px;opacity:.04;transform:skewX(-14deg);transform-origin:top right;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 82%);
+  mask-image:linear-gradient(90deg,transparent,#000 82%);pointer-events:none}
+.line h3,.line p,.line .items{position:relative;z-index:1}
+.line h3{font-family:var(--disp);font-weight:800;font-style:italic;text-transform:uppercase;
+  font-size:17px;margin-bottom:6px;color:var(--white)}
+.line p{font-size:13.5px;line-height:1.55;color:var(--grey-2);margin-bottom:8px}
+.line .items{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.notify{border:1px solid var(--rule);background:var(--carbon);padding:18px 19px;max-width:560px}
+.notify h4{font-family:var(--disp);font-weight:800;font-style:italic;text-transform:uppercase;
+  font-size:19px;margin-bottom:8px}
+.notify p{font-size:14px;line-height:1.6;color:var(--grey-2);margin-bottom:13px}
+.notify .f{display:flex;gap:10px;flex-wrap:wrap}
+.notify input{font-family:var(--mono);font-size:12.5px;padding:11px 12px;border:1px solid var(--rule);
+  background:var(--carbon-2);color:var(--white);flex:1;min-width:200px}
+.notify input:focus{outline:none;border-color:var(--gold-lo)}
+.notify button{padding:11px 20px;background:var(--carbon-3);border:1px solid var(--rule);
+  color:var(--white);cursor:pointer;font-family:var(--disp);font-weight:700;font-style:italic;
+  text-transform:uppercase;letter-spacing:.05em}
+.notify button:hover:not([disabled]){border-color:var(--gold-lo);color:var(--gold)}
+.nmsg{margin-top:12px;font-size:13.5px;line-height:1.5;display:none}
+.nmsg.ok{display:block;color:#9FD6B0}
+.nmsg.bad{display:block;color:#E9A0A0}
+.hp{position:absolute;left:-9999px}
+</style>
+</head>
+<body>
+<div class="checkstrip"></div>
+<div class="wrap">
+  <header class="mastB">
+    <div class="barB">
+      <a href="index.html" aria-label="Chasing Checkerz home"><img class="logoB" src="assets/logo-bar.webp" alt="Chasing Checkerz"></a>
+      <div class="toolB"><b>Shop</b>Chasing Checkerz</div>
+    </div>
+    <nav class="sitenav">
+      <a href="index.html">Home</a>
+      <a href="karting.html">Karting</a>
+      <div class="navgrp">
+        <button type="button" aria-expanded="false" aria-haspopup="true">Racing</button>
+        <div class="navmenu">
+          <a href="news.html">News</a>
+          <a href="events.html">Events</a>
+          <a href="winners.html">Winners</a>
+        </div>
+      </div>
+      <div class="navgrp">
+        <button type="button" aria-expanded="false" aria-haspopup="true">Tools</button>
+        <div class="navmenu">
+          <a href="tracks.html">Tracks</a>
+          <a href="frame.html">Chassis</a>
+          <a href="setup.html">Setup</a>
+        </div>
+      </div>
+      <a href="shop.html" aria-current="page">Shop</a>
+      <a href="review.html">Reviews</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <section class="pagehero">
+    <div class="eyebrow">Merch &middot; opening soon</div>
+    <h1>Wear the <em>checkerz</em>.</h1>
+    <p class="lede">The full range in concept: apparel, headwear, drinkware, race gear and decals. Nothing's on sale yet &mdash; we're getting samples in hand before we ask anyone to buy anything, because putting our name on something we haven't worn would be a strange way to run a brand built on reviewing gear honestly.</p>
+  </section>
+
+  <section class="grp">
+    <div class="grp-head"><h2>The range</h2><span class="cnt">Concept</span></div>
+    <div class="board">
+      <img src="assets/merch-board.webp" width="1400" height="1120"
+           alt="Chasing Checkerz merchandise concept board showing tees, hoodies, long sleeves, race jerseys, caps, keychains, stickers, wristbands, tumblers, water bottles, mugs, pit shirts, team jackets and a banner">
+    </div>
+    <p class="boardnote">Concept artwork &mdash; final products, colours and pricing will differ</p>
+
+    <div class="lines">
+      <div class="line">
+        <h3>Apparel</h3>
+        <p>Everyday wear and trackside kit. The performance long sleeve is the one that matters at a summer club day, when a cotton tee stops being a good idea by eleven in the morning.</p>
+        <div class="items">Tee &middot; Hoodie &middot; Long sleeve &middot; Race jersey</div>
+      </div>
+      <div class="line">
+        <h3>Headwear</h3>
+        <p>Three fits, because a hat that doesn't sit right under a helmet in the paddock gets left in the trailer.</p>
+        <div class="items">Flexfit &middot; Snapback &middot; Trucker</div>
+      </div>
+      <div class="line">
+        <h3>Accessories</h3>
+        <p>The small stuff. Decals in a few sizes so they work on a nosecone, a toolbox lid or a rear window.</p>
+        <div class="items">Keychain &middot; Sticker pack &middot; Wristband</div>
+      </div>
+      <div class="line">
+        <h3>Drinkware</h3>
+        <p>An insulated bottle is genuinely useful equipment on a race weekend, which is more than most branded merch can claim.</p>
+        <div class="items">Tumbler &middot; Water bottle &middot; Mug</div>
+      </div>
+      <div class="line">
+        <h3>Race gear</h3>
+        <p>Pit and paddock kit, numbered where it makes sense. The team jacket is the piece we most want to get right.</p>
+        <div class="items">Race cap &middot; Pit shirt &middot; Team jacket</div>
+      </div>
+      <div class="line">
+        <h3>Trackside</h3>
+        <p>Banners for the tent. Useful for finding your own pit from across a paddock, which is not a joke if you've ever tried.</p>
+        <div class="items">Flag &middot; Banner</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="grp">
+    <div class="grp-head"><h2>Tell me when it opens</h2></div>
+    <div class="notify">
+      <h4>First run, first notice</h4>
+      <p>Drop your email and we'll tell you when the store goes live. No newsletter, no daily anything &mdash; just a message when there's something to buy.</p>
+      <form class="f" id="n-form" novalidate>
+        <label for="n-email" class="hp">Email</label>
+        <input type="email" id="n-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <input type="text" class="hp" name="website2" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit" id="n-btn">Notify me</button>
+      </form>
+      <div class="nmsg" id="n-msg" role="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <footer class="sitefoot">
+    <span>Chasing Checkerz</span>
+    <span>Chase the dream. Live the race.</span>
+    <span class="r">Prototype build</span>
+  </footer>
+</div>
+<script src="assets/site.js"></script>
+<script>
+(function(){
+  var f=document.getElementById('n-form'), msg=document.getElementById('n-msg'), btn=document.getElementById('n-btn');
+  if(!f) return;
+  function show(k,t){ msg.className='nmsg '+k; msg.textContent=t; }
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var email=f.elements.email.value.trim(), hp=f.elements.website2.value.trim();
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ show('bad','That email address doesn\u2019t look right.'); return; }
+    btn.disabled=true; btn.textContent='Sending\u2026';
+    fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email, list:'shop', website2:hp})})
+      .then(function(r){ if(!r.ok) throw new Error(); return r.json(); })
+      .then(function(){ show('ok','You\u2019re on the list. We\u2019ll be in touch when the first run lands.'); f.reset(); btn.textContent='Done'; })
+      .catch(function(){ btn.disabled=false; btn.textContent='Notify me';
+        show('bad','That didn\u2019t go through. Try again shortly.'); });
+  });
+})();
+</script>
+</body>
+</html>
