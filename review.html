@@ -30,6 +30,18 @@
 .terms h3{font-family:var(--disp);font-weight:800;font-style:italic;text-transform:uppercase;
   font-size:17px;margin-bottom:7px}
 .terms p{font-size:13.5px;line-height:1.55;color:var(--grey-2)}
+.covers{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.covers>div{position:relative;padding:16px 17px;background:var(--carbon);
+  border:1px solid var(--rule);border-left:3px solid var(--red);overflow:hidden}
+.covers>div::after{content:"";position:absolute;top:0;right:0;bottom:0;width:38%;
+  background-image:repeating-conic-gradient(#fff 0% 25%,transparent 0% 50%);
+  background-size:11px 11px;opacity:.04;transform:skewX(-14deg);transform-origin:top right;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 82%);
+  mask-image:linear-gradient(90deg,transparent,#000 82%);pointer-events:none}
+.covers h3,.covers p{position:relative;z-index:1}
+.covers h3{font-family:var(--disp);font-weight:800;font-style:italic;text-transform:uppercase;
+  font-size:17px;margin-bottom:7px;color:var(--white)}
+.covers p{font-size:13.5px;line-height:1.55;color:var(--grey-2)}
 </style>
 </head>
 <body>
@@ -61,7 +73,7 @@
 
   <section class="grp">
     <div class="grp-head"><h2>What we cover</h2></div>
-    <div class="terms" style="margin-top:0;border-top:0;padding-top:0">
+    <div class="covers">
       <div>
         <h3>Facilities</h3>
         <p>Outdoor sprint tracks, indoor rental centres, kartplexes and race shops. What the surface is like, what the paddock is like on a race weekend, whether a newcomer would be looked after or left standing in the pits.</p>
