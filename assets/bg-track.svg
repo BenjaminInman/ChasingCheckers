@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" width="1600" height="1000">
+  <defs>
+    <!-- Asphalt grain -->
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" seed="7" result="n"/>
+      <feColorMatrix in="n" type="saturate" values="0"/>
+    </filter>
+
+    <!-- Fade the circuit trace out toward the edges so nothing terminates hard -->
+    <radialGradient id="fade" cx="52%" cy="46%" r="62%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+      <stop offset="70%" stop-color="#fff" stop-opacity=".45"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="softmask">
+      <rect width="1600" height="1000" fill="url(#fade)"/>
+    </mask>
+  </defs>
+
+  <rect width="1600" height="1000" fill="none"/>
+
+  <!-- Grain layer -->
+  <rect width="1600" height="1000" filter="url(#grain)" opacity=".055"/>
+
+  <!-- Abstract circuit trace. Deliberately not any real track — an invented
+       layout, so there's no trademark or likeness attached to it. -->
+  <g mask="url(#softmask)" fill="none" stroke="#F4F5F6" stroke-linecap="round" stroke-linejoin="round">
+    <path opacity=".05" stroke-width="26"
+      d="M 250 700
+         C 180 620, 190 520, 285 470
+         L 620 300
+         C 700 262, 790 285, 815 360
+         L 880 545
+         C 905 620, 985 655, 1055 628
+         L 1300 532
+         C 1395 496, 1470 560, 1447 655
+         C 1425 744, 1330 780, 1245 762
+         L 780 668
+         C 690 650, 640 700, 618 780
+         C 596 858, 505 890, 425 855
+         L 300 800
+         C 262 783, 250 742, 250 700 Z"/>
+    <path opacity=".085" stroke-width="2" stroke-dasharray="1 15"
+      d="M 250 700
+         C 180 620, 190 520, 285 470
+         L 620 300
+         C 700 262, 790 285, 815 360
+         L 880 545
+         C 905 620, 985 655, 1055 628
+         L 1300 532
+         C 1395 496, 1470 560, 1447 655
+         C 1425 744, 1330 780, 1245 762
+         L 780 668
+         C 690 650, 640 700, 618 780
+         C 596 858, 505 890, 425 855
+         L 300 800
+         C 262 783, 250 742, 250 700 Z"/>
+  </g>
+
+  <!-- Start/finish line marker on the trace -->
+  <g mask="url(#softmask)" opacity=".13">
+    <g transform="translate(447,357) rotate(-27)">
+      <rect x="-3" y="-15" width="6" height="7" fill="#F4F5F6"/>
+      <rect x="3" y="-8"  width="6" height="7" fill="#F4F5F6"/>
+      <rect x="-3" y="-1" width="6" height="7" fill="#F4F5F6"/>
+      <rect x="3" y="6"   width="6" height="7" fill="#F4F5F6"/>
+    </g>
+  </g>
+</svg>

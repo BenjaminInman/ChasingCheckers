@@ -229,3 +229,38 @@ a.card2:hover .c2-state{color:var(--gold)}
   .sitenav .navgrp>button{padding:11px 11px 9px}
   .navmenu{left:auto;right:0}
 }
+
+/* --- Background texture --------------------------------------------------
+   Fixed, non-scrolling layer: an invented circuit trace plus asphalt grain,
+   with a faint red wash at the top edge. Kept at very low contrast so body
+   copy stays fully legible; hidden entirely for anyone who has asked for
+   reduced data, and never printed. */
+html{background:var(--black)}
+body{background:transparent;position:relative}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background-color:var(--black);
+  background-image:
+    radial-gradient(120% 70% at 50% -10%, rgba(214,32,42,.055), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(244,245,246,.012) 0 1px, transparent 1px 160px),
+    url("bg-track.svg");
+  background-repeat:no-repeat,repeat,no-repeat;
+  background-size:cover,auto,cover;
+  background-position:center top,center,center 44%;
+}
+@media (max-width:760px){
+  /* The trace is mostly off-screen at phone widths — drop it, keep the wash. */
+  body::before{background-image:
+    radial-gradient(140% 60% at 50% -10%, rgba(214,32,42,.05), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(244,245,246,.012) 0 1px, transparent 1px 160px)}
+}
+@media (prefers-reduced-data:reduce){
+  body::before{background-image:none}
+}
+@media print{
+  body::before{display:none}
+}
