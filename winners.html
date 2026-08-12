@@ -57,6 +57,7 @@
 .tbar span{display:block;height:100%;background:var(--red)}
 .tcount{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--grey)}
 .why{border:1px solid var(--rule);background:var(--carbon);padding:16px 18px}
+.subnote{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-3);margin-bottom:12px}
 .why h4{font-family:var(--disp);font-weight:800;font-style:italic;text-transform:uppercase;font-size:18px;margin-bottom:8px}
 .why p{font-size:14px;line-height:1.6;color:var(--grey-2);margin-bottom:9px}
 .why p:last-child{margin-bottom:0}
@@ -87,11 +88,12 @@
   <section class="pagehero">
     <div class="eyebrow">2026 season &middot; national series</div>
     <h1>Who's <em>winning</em>, and on what.</h1>
-    <p class="lede">Main event winners from the US national series, with the chassis under them. Nobody publishes this as a table &mdash; it sits scattered through race reports &mdash; so we're collecting it. If you're about to spend four thousand dollars on a frame, this is more useful than a spec sheet.</p>
+    <p class="lede">Main event winners across the US national series, from Micro Swift cadets to Pro Shifter and Briggs 206, with the chassis under each of them. Nobody publishes this as a table &mdash; it sits scattered through race reports &mdash; so we're collecting it. If you're about to spend four thousand dollars on a frame, this is more useful than a spec sheet.</p>
   </section>
 
   <section class="grp">
     <div class="grp-head"><h2>Race winners</h2><span class="cnt" id="w-cnt"></span></div>
+    <p class="subnote">14 classes across USPKS, SKUSA Pro Tour and CKNA. Every row links to its race report.</p>
     <div class="serieschips" id="w-filter"></div>
     <div class="wtable" id="w-table"></div>
   </section>
@@ -105,7 +107,8 @@
     <h4>How to read this, and how not to</h4>
     <p>Every row comes from a published race report and links back to it. Where a result was provisional at the time of the report, or changed in technical inspection, it says so on the row.</p>
     <p>The tally counts main event wins by chassis brand, and it is <em>not</em> a ranking of which chassis is fastest. Entry numbers vary wildly by brand &mdash; a marque with thirty karts in a class will collect more wins than one with three, without being any quicker. Team quality, engine builder and driver matter more than the frame in most of these results. What the tally is genuinely good for is telling you which equipment has real support in the national paddock, because that is what determines whether you can get parts and setup help at your track.</p>
-    <p>Scope right now is the national series &mdash; SKUSA Pro Tour and USPKS. Regional and club racing is where most people actually race, and it's not covered here yet. Sprint karting only, no dirt or road racing.</p>
+    <p>Coverage is strongest where reporting is: USPKS publishes a full race report for every class, so those rounds are complete from Micro Swift up. SKUSA and CKNA are partial for now and we're filling them in. Briggs 206 is the thinnest &mdash; it's the biggest class in the country by entries but most of it runs at club and divisional level where nobody writes a race report, so the national events are all that's visible from the outside. Sprint karting only, no dirt or road racing.</p>
+    <p>One thing the 206 numbers will show once they fill out: the chassis brands that win on 206 are largely <em>not</em> the ones that win in the two-stroke classes. Different frame stiffness suits nine horsepower, and the national two-stroke tally tells you almost nothing about what to buy for a 206 grid.</p>
   </div>
 
   <footer class="sitefoot">
@@ -122,41 +125,34 @@
    Add a row after each national weekend. Keep `src` pointing at the report. */
 (function(){
   var WINS = [
-    { date:'2026-08-09', series:'USPKS', event:'Cincinnati Grand Prix', where:'Batavia, OH',
-      cls:'Pro Shifter', driver:'Gavin Bayliff', team:'TKG', chassis:'Birel ART',
-      src:'https://www.ekartingnews.com/2026/08/09/ekn-trackside-2026-united-states-pro-kart-series-ohio-grand-prix-sunday-report/' },
-
-    { date:'2026-08-09', series:'USPKS', event:'Cincinnati Grand Prix', where:'Batavia, OH',
-      cls:'KA100 Senior', driver:'James Overbeck', team:'BJR', chassis:'Tony Kart',
-      src:'https://www.ekartingnews.com/2026/08/09/ekn-trackside-2026-united-states-pro-kart-series-ohio-grand-prix-sunday-report/' },
-
-    { date:'2026-08-09', series:'USPKS', event:'Cincinnati Grand Prix', where:'Batavia, OH',
-      cls:'KA100 Junior', driver:'Lucas Palacio', team:'RPG', chassis:'Kosmic',
-      src:'https://www.ekartingnews.com/2026/08/09/ekn-trackside-2026-united-states-pro-kart-series-ohio-grand-prix-sunday-report/' },
-
-    { date:'2026-07-26', series:'SKUSA Pro Tour', event:'SummerNationals', where:'New Castle, IN',
-      cls:'Pro Shifter', driver:'Matheus Morgatto', team:'Velocity Racing', chassis:'Sodikart',
-      note:'Won all three main events on the way to the title',
-      src:'https://www.ekartingnews.com/2026/07/26/ekn-trackside-2026-superkarts-usa-pro-tour-summernationals-sunday-report/' },
-
-    { date:'2026-07-26', series:'SKUSA Pro Tour', event:'SummerNationals', where:'New Castle, IN',
-      cls:'KA100 Junior', driver:'Nicolas Orbezo', team:'IRM', chassis:'Tony Kart',
-      src:'https://www.ekartingnews.com/2026/07/26/ekn-trackside-2026-superkarts-usa-pro-tour-summernationals-sunday-report/' },
-
-    { date:'2026-07-25', series:'SKUSA Pro Tour', event:'SummerNationals Rd 5', where:'New Castle, IN',
-      cls:'Pro X30', driver:'Gus Lawrence', team:'RPG', chassis:'Kosmic',
-      note:'Prefinal and Final double',
-      src:'https://www.ekartingnews.com/2026/07/25/ekn-trackside-2026-superkarts-usa-pro-tour-summernationals-saturday-report/' },
-
-    { date:'2026-06-14', series:'SKUSA Pro Tour', event:'SpringNationals', where:'Batavia, OH',
-      cls:'KA100 Junior', driver:'Marco Sammut', team:'BJR', chassis:'LN Kart',
-      note:'Awarded after the on-track winner failed technical inspection',
-      src:'https://www.ekartingnews.com/2026/06/14/ekn-trackside-2026-superkarts-usa-pro-tour-springnationals-sunday-report/' },
-
-    { date:'2026-04-12', series:'USPKS', event:'Carolina Grand Prix', where:'Mooresville, NC',
-      cls:'KA100 Senior', driver:'Pauly Massimino', team:'BJR', chassis:'LN Kart',
-      note:'Reported as provisional winner',
-      src:'https://www.uspks.com/race-report-2026-united-states-pro-kart-series-carolina-grand-prix/' }
+    { date:"2026-04-12", series:"USPKS", event:"Carolina Grand Prix", where:"Mooresville, NC", cls:"X30 Pro", fam:"X30", driver:"Pauly Massimino", team:"BJR", chassis:"LN Kart", src:"https://www.uspks.com/race-report-2026-united-states-pro-kart-series-carolina-grand-prix/" },
+    { date:"2026-04-12", series:"USPKS", event:"Carolina Grand Prix", where:"Mooresville, NC", cls:"KA100 Senior", fam:"KA100", driver:"Aiden Levy", team:"MPR", chassis:"Tony Kart", note:"Promoted after the provisional winner was penalised", src:"https://www.uspks.com/race-report-2026-united-states-pro-kart-series-carolina-grand-prix/" },
+    { date:"2026-04-12", series:"USPKS", event:"Carolina Grand Prix", where:"Mooresville, NC", cls:"Pro Shifter", fam:"Shifter", driver:"Adrien Renaudin", team:"Velocity", chassis:"Sodikart", note:"Wire-to-wire in the 25-lap final", src:"https://www.uspks.com/race-report-2026-united-states-pro-kart-series-carolina-grand-prix/" },
+    { date:"2026-04-12", series:"USPKS", event:"Carolina Grand Prix", where:"Mooresville, NC", cls:"X30 Junior", fam:"X30", driver:"Nathan Golseth", team:"SCR", chassis:"CS55", note:"Took the lead on the final lap from sixth", src:"https://www.uspks.com/race-report-2026-united-states-pro-kart-series-carolina-grand-prix/" },
+    { date:"2026-04-12", series:"USPKS", event:"Carolina Grand Prix", where:"Mooresville, NC", cls:"KA100 Junior", fam:"KA100", driver:"Travis Pettit", team:"RPG", chassis:"Kosmic", src:"https://www.uspks.com/race-report-2026-united-states-pro-kart-series-carolina-grand-prix/" },
+    { date:"2026-04-12", series:"USPKS", event:"Carolina Grand Prix", where:"Mooresville, NC", cls:"KA100 Super Master", fam:"KA100", driver:"Mike Rolison", team:"RPG", chassis:"Kosmic", note:"Overall win in the combined Master group", src:"https://www.uspks.com/race-report-2026-united-states-pro-kart-series-carolina-grand-prix/" },
+    { date:"2026-04-12", series:"USPKS", event:"Carolina Grand Prix", where:"Mooresville, NC", cls:"KA100 Master", fam:"KA100", driver:"Byron Daley", team:"Prodigy", chassis:"Bestkart", src:"https://www.uspks.com/race-report-2026-united-states-pro-kart-series-carolina-grand-prix/" },
+    { date:"2026-04-12", series:"USPKS", event:"Carolina Grand Prix", where:"Mooresville, NC", cls:"Master Shifter", fam:"Shifter", driver:"Bradley Danoff", team:"Maranello USA", chassis:"Maranello", note:"Inaugural Master Shifter winner at USPKS", src:"https://www.uspks.com/race-report-2026-united-states-pro-kart-series-carolina-grand-prix/" },
+    { date:"2026-04-12", series:"USPKS", event:"Carolina Grand Prix", where:"Mooresville, NC", cls:"Mini Swift", fam:"Cadet", driver:"Dutch Westbrook", team:"Team Benik", chassis:"Benik", note:"Third to first on the final lap", src:"https://www.uspks.com/race-report-2026-united-states-pro-kart-series-carolina-grand-prix/" },
+    { date:"2026-04-12", series:"USPKS", event:"Carolina Grand Prix", where:"Mooresville, NC", cls:"Micro Swift", fam:"Cadet", driver:"Tre Sanders", team:"RPM", chassis:"Nitro Kart", note:"Fourth to first on the final lap", src:"https://www.uspks.com/race-report-2026-united-states-pro-kart-series-carolina-grand-prix/" },
+    { date:"2026-06-28", series:"USPKS", event:"Indiana Grand Prix", where:"New Castle, IN", cls:"X30 Pro", fam:"X30", driver:"Donovan Bonilla", team:"RPG", chassis:"Kosmic", note:"First career USPKS win after the leaders collided on the last lap", src:"https://www.uspks.com/ekn-trackside-2026-united-states-pro-kart-series-indiana-grand-prix-sunday-report/" },
+    { date:"2026-06-28", series:"USPKS", event:"Indiana Grand Prix", where:"New Castle, IN", cls:"KA100 Senior", fam:"KA100", driver:"Pauly Massimino", team:"BJR", chassis:"LN Kart", src:"https://www.uspks.com/ekn-trackside-2026-united-states-pro-kart-series-indiana-grand-prix-sunday-report/" },
+    { date:"2026-06-28", series:"USPKS", event:"Indiana Grand Prix", where:"New Castle, IN", cls:"Pro Shifter", fam:"Shifter", driver:"Billy Musgrave", team:"Carblos", chassis:"Factory Kart", note:"First USPKS victory", src:"https://www.uspks.com/ekn-trackside-2026-united-states-pro-kart-series-indiana-grand-prix-sunday-report/" },
+    { date:"2026-06-28", series:"USPKS", event:"Indiana Grand Prix", where:"New Castle, IN", cls:"X30 Junior", fam:"X30", driver:"Travis Pettit", team:"BJR", chassis:"LN Kart", note:"Won by 23 thousandths", src:"https://www.uspks.com/ekn-trackside-2026-united-states-pro-kart-series-indiana-grand-prix-sunday-report/" },
+    { date:"2026-06-28", series:"USPKS", event:"Indiana Grand Prix", where:"New Castle, IN", cls:"KA100 Junior", fam:"KA100", driver:"Colton Schniegenberg", team:"RPM", chassis:"Tony Kart", note:"Won by one thousandth of a second", src:"https://www.uspks.com/ekn-trackside-2026-united-states-pro-kart-series-indiana-grand-prix-sunday-report/" },
+    { date:"2026-06-28", series:"USPKS", event:"Indiana Grand Prix", where:"New Castle, IN", cls:"KA100 Super Master", fam:"KA100", driver:"Mario Barrios", team:"RPG", chassis:"Kosmic", note:"Overall win in the combined Master group", src:"https://www.uspks.com/ekn-trackside-2026-united-states-pro-kart-series-indiana-grand-prix-sunday-report/" },
+    { date:"2026-06-28", series:"USPKS", event:"Indiana Grand Prix", where:"New Castle, IN", cls:"Shifter Super Master", fam:"Shifter", driver:"Dan Chandler", team:"", chassis:"Tony Kart", note:"Overall win in the combined Shifter Master group", src:"https://www.uspks.com/ekn-trackside-2026-united-states-pro-kart-series-indiana-grand-prix-sunday-report/" },
+    { date:"2026-06-28", series:"USPKS", event:"Indiana Grand Prix", where:"New Castle, IN", cls:"Shifter Master", fam:"Shifter", driver:"Dominic Moceri", team:"", chassis:"TB Kart", src:"https://www.uspks.com/ekn-trackside-2026-united-states-pro-kart-series-indiana-grand-prix-sunday-report/" },
+    { date:"2026-06-28", series:"USPKS", event:"Indiana Grand Prix", where:"New Castle, IN", cls:"Mini Swift", fam:"Cadet", driver:"Jake Manalio", team:"RPM", chassis:"Nitro Kart", note:"Promoted after a blocking penalty for the on-track winner", src:"https://www.uspks.com/ekn-trackside-2026-united-states-pro-kart-series-indiana-grand-prix-sunday-report/" },
+    { date:"2026-06-28", series:"USPKS", event:"Indiana Grand Prix", where:"New Castle, IN", cls:"Micro Swift", fam:"Cadet", driver:"Tristan Francisco", team:"RPM", chassis:"Nitro Kart", note:"Won by one thousandth of a second", src:"https://www.uspks.com/ekn-trackside-2026-united-states-pro-kart-series-indiana-grand-prix-sunday-report/" },
+    { date:"2026-08-09", series:"USPKS", event:"Cincinnati Grand Prix", where:"Batavia, OH", cls:"Pro Shifter", fam:"Shifter", driver:"Gavin Bayliff", team:"TKG", chassis:"Birel ART", note:"Wire-to-wire", src:"https://www.ekartingnews.com/2026/08/09/ekn-trackside-2026-united-states-pro-kart-series-ohio-grand-prix-sunday-report/" },
+    { date:"2026-08-09", series:"USPKS", event:"Cincinnati Grand Prix", where:"Batavia, OH", cls:"KA100 Senior", fam:"KA100", driver:"James Overbeck", team:"BJR", chassis:"Tony Kart", note:"Won by 3.5 seconds", src:"https://www.ekartingnews.com/2026/08/09/ekn-trackside-2026-united-states-pro-kart-series-ohio-grand-prix-sunday-report/" },
+    { date:"2026-08-09", series:"USPKS", event:"Cincinnati Grand Prix", where:"Batavia, OH", cls:"KA100 Junior", fam:"KA100", driver:"Lucas Palacio", team:"RPG", chassis:"Kosmic", src:"https://www.ekartingnews.com/2026/08/09/ekn-trackside-2026-united-states-pro-kart-series-ohio-grand-prix-sunday-report/" },
+    { date:"2026-07-26", series:"SKUSA Pro Tour", event:"SummerNationals", where:"New Castle, IN", cls:"Pro Shifter", fam:"Shifter", driver:"Matheus Morgatto", team:"Velocity Racing", chassis:"Sodikart", note:"Won all three main events on the way to the title", src:"https://www.ekartingnews.com/2026/07/26/ekn-trackside-2026-superkarts-usa-pro-tour-summernationals-sunday-report/" },
+    { date:"2026-07-26", series:"SKUSA Pro Tour", event:"SummerNationals", where:"New Castle, IN", cls:"KA100 Junior", fam:"KA100", driver:"Nicolas Orbezo", team:"IRM", chassis:"Tony Kart", note:"Second win of the season", src:"https://www.ekartingnews.com/2026/07/26/ekn-trackside-2026-superkarts-usa-pro-tour-summernationals-sunday-report/" },
+    { date:"2026-07-25", series:"SKUSA Pro Tour", event:"SummerNationals Rd 5", where:"New Castle, IN", cls:"Pro X30", fam:"X30", driver:"Gus Lawrence", team:"RPG", chassis:"Kosmic", note:"Prefinal and Final double", src:"https://www.ekartingnews.com/2026/07/25/ekn-trackside-2026-superkarts-usa-pro-tour-summernationals-saturday-report/" },
+    { date:"2026-06-14", series:"SKUSA Pro Tour", event:"SpringNationals", where:"Batavia, OH", cls:"KA100 Junior", fam:"KA100", driver:"Marco Sammut", team:"BJR", chassis:"LN Kart", note:"Awarded after the on-track winner failed technical inspection", src:"https://www.ekartingnews.com/2026/06/14/ekn-trackside-2026-superkarts-usa-pro-tour-springnationals-sunday-report/" },
+    { date:"2026-03-08", series:"CKNA", event:"Spring Nationals", where:"Concord, NC", cls:"Senior Medium", fam:"Briggs 206", driver:"Cale Zimmermann", team:"", chassis:"VLR", note:"Took the lead on the final lap of an 83-driver class", src:"https://www.ekartingnews.com/2026/03/09/race-report-2026-cup-karts-north-america-spring-nationals/" }
   ];
 
   var table=document.getElementById('w-table'), tally=document.getElementById('w-tally'),
@@ -168,11 +164,13 @@
   function esc(s){var e=document.createElement('span'); e.textContent=s; return e.innerHTML;}
   function d(s){return new Date(s+'T12:00:00').toLocaleDateString(undefined,{month:'short',day:'numeric'});}
 
-  var classes=[]; WINS.forEach(function(w){ if(classes.indexOf(w.cls)<0) classes.push(w.cls); });
-  classes.sort();
+  // Filter by engine family — 14 classes is too many chips, and family is how
+  // people actually shop for equipment.
+  var ORDER=['Briggs 206','Cadet','KA100','X30','Shifter'];
+  var fams=ORDER.filter(function(f){ return WINS.some(function(w){ return w.fam===f; }); });
 
-  filter.innerHTML='<button type="button" data-c="" aria-pressed="true">All classes</button>'+
-    classes.map(function(c){ return '<button type="button" data-c="'+esc(c)+'" aria-pressed="false">'+esc(c)+'</button>'; }).join('');
+  filter.innerHTML='<button type="button" data-c="" aria-pressed="true">All</button>'+
+    fams.map(function(c){ return '<button type="button" data-c="'+esc(c)+'" aria-pressed="false">'+esc(c)+'</button>'; }).join('');
 
   filter.addEventListener('click', function(e){
     var b=e.target.closest('button'); if(!b) return;
@@ -184,7 +182,7 @@
   });
 
   function draw(){
-    var rows=WINS.filter(function(w){ return !pick || w.cls===pick; })
+    var rows=WINS.filter(function(w){ return !pick || w.fam===pick; })
                  .sort(function(a,b){ return a.date<b.date?1:-1; });
 
     cnt.textContent = rows.length + (rows.length===1?' win':' wins');
@@ -199,7 +197,7 @@
               esc(w.series+' '+w.event)+'</a> &middot; '+esc(w.where)+'</span></span>'+
           '<span class="wclass">'+esc(w.cls)+'</span>'+
           '<span><span class="wchassis">'+esc(w.chassis)+'</span>'+
-            '<span class="wteam">'+esc(w.team)+'</span></span>'+
+            (w.team?'<span class="wteam">'+esc(w.team)+'</span>':'')+'</span>'+
           (w.note?'<span class="wnote">'+esc(w.note)+'</span>':'')+
         '</div>';
       }).join('');
