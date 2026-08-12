@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Request a Review — Chasing Checkerz</title>
+<meta name="description" content="Facility owners and manufacturers: put your track, product or service in front of us for review. What we cover, how we work, and what we disclose.">
+<link rel="stylesheet" href="assets/app.css">
+<style>
+.rq{display:grid;gap:16px;max-width:640px;margin-top:8px}
+.rq .row{display:grid;gap:6px}
+.rq .two{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+@media (max-width:620px){.rq .two{grid-template-columns:1fr}}
+.rq input[type=text],.rq input[type=email],.rq input[type=url],.rq textarea,.rq select{
+  font-family:var(--mono);font-size:12.5px;padding:10px 11px;border:1px solid var(--rule);
+  background:var(--carbon);color:var(--white);width:100%}
+.rq textarea{min-height:120px;line-height:1.5;resize:vertical}
+.rq input:focus,.rq textarea:focus,.rq select:focus{outline:none;border-color:var(--gold-lo)}
+.rq .hint{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-3)}
+.rq .req{color:var(--red)}
+.rq button{padding:12px 22px;background:var(--carbon-3);border:1px solid var(--rule);
+  color:var(--white);cursor:pointer;justify-self:start}
+.rq button:hover:not([disabled]){border-color:var(--gold-lo);color:var(--gold)}
+.rq-msg{padding:13px 15px;border:1px solid var(--rule);font-size:14px;line-height:1.5;display:none}
+.rq-msg.ok{display:block;border-color:#2E5E3E;color:#9FD6B0;background:#111A14}
+.rq-msg.bad{display:block;border-color:var(--red-lo);color:#E9A0A0;background:#1A1113}
+.hp{position:absolute;left:-9999px}
+.terms{margin-top:38px;border-top:1px solid var(--rule);padding-top:22px;
+  display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.terms h3{font-family:var(--disp);font-weight:800;font-style:italic;text-transform:uppercase;
+  font-size:17px;margin-bottom:7px}
+.terms p{font-size:13.5px;line-height:1.55;color:var(--grey-2)}
+</style>
+</head>
+<body>
+<div class="checkstrip"></div>
+<div class="wrap">
+  <header class="mastB">
+    <div class="barB">
+      <a href="index.html" aria-label="Chasing Checkerz home"><img class="logoB" src="assets/logo-bar.webp" alt="Chasing Checkerz"></a>
+      <div class="toolB"><b>Reviews</b>Chasing Checkerz</div>
+    </div>
+    <nav class="sitenav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="news.html">News</a>
+      <a href="karting.html">Karting</a>
+      <a href="tracks.html">Tracks</a>
+      <a href="frame.html">Chassis</a>
+      <a href="setup.html">Setup</a>
+      <a href="review.html" aria-current="page">Reviews</a>
+    </nav>
+  </header>
+
+  <section class="pagehero">
+    <div class="eyebrow">Facilities &amp; manufacturers</div>
+    <h1>Put it in front of <em>us</em>.</h1>
+    <p class="lede">If you build karting equipment or run a facility and you want it covered, tell us about it. We race what we write about and we spend our own money doing it &mdash; so we'll say what we actually think, and we'll say plainly how we got hold of whatever we're reviewing.</p>
+  </section>
+
+  <section class="grp">
+    <div class="grp-head"><h2>What we cover</h2></div>
+    <div class="terms" style="margin-top:0;border-top:0;padding-top:0">
+      <div>
+        <h3>Facilities</h3>
+        <p>Outdoor sprint tracks, indoor rental centres, kartplexes and race shops. What the surface is like, what the paddock is like on a race weekend, whether a newcomer would be looked after or left standing in the pits.</p>
+      </div>
+      <div>
+        <h3>Karting hardware</h3>
+        <p>Chassis, engine packages, tyres, seats, data systems, tools and trailer kit. Anything a club racer or a parent actually has to buy.</p>
+      </div>
+      <div>
+        <h3>Driver equipment</h3>
+        <p>Suits, helmets, ribs, gloves, boots. Especially youth sizing, which is chronically under-covered and where the fit problems are real.</p>
+      </div>
+      <div>
+        <h3>Software &amp; services</h3>
+        <p>Timing, data analysis, coaching programmes, sim hardware and arrive-and-drive operations.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="grp">
+    <div class="grp-head"><h2>Send it over</h2></div>
+
+    <div class="rq-msg" id="rq-msg" role="status" aria-live="polite"></div>
+
+    <form class="rq" id="rq-form" novalidate>
+      <div class="two">
+        <div class="row">
+          <label for="f-name">Your name <span class="req">*</span></label>
+          <input type="text" id="f-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="row">
+          <label for="f-company">Company or facility <span class="req">*</span></label>
+          <input type="text" id="f-company" name="company" autocomplete="organization" required>
+        </div>
+      </div>
+
+      <div class="two">
+        <div class="row">
+          <label for="f-email">Email <span class="req">*</span></label>
+          <input type="email" id="f-email" name="email" autocomplete="email" required>
+        </div>
+        <div class="row">
+          <label for="f-site">Website</label>
+          <input type="url" id="f-site" name="website" placeholder="https://">
+        </div>
+      </div>
+
+      <div class="two">
+        <div class="row">
+          <label for="f-kind">What is it <span class="req">*</span></label>
+          <select id="f-kind" name="kind" required>
+            <option value="">Choose one</option>
+            <option>Facility or track</option>
+            <option>Chassis or engine</option>
+            <option>Tyres, seat or components</option>
+            <option>Driver equipment</option>
+            <option>Data, timing or software</option>
+            <option>Coaching or arrive-and-drive</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="row">
+          <label for="f-where">Where is it</label>
+          <input type="text" id="f-where" name="location" placeholder="City, state">
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="f-what">Tell us about it <span class="req">*</span></label>
+        <textarea id="f-what" name="details" required placeholder="What it is, who it's for, and what you'd want us to put it through. If there's something you think we'd be sceptical about, say so — that's usually the interesting part."></textarea>
+      </div>
+
+      <div class="row">
+        <label for="f-terms">How would we get hold of it</label>
+        <select id="f-terms" name="terms">
+          <option value="">Choose one</option>
+          <option>Visit in person (facility)</option>
+          <option>Loan, returned afterwards</option>
+          <option>Supplied to keep</option>
+          <option>We buy it at normal retail</option>
+          <option>Not sure yet</option>
+        </select>
+        <span class="hint">Whatever the answer, we publish it alongside the review</span>
+      </div>
+
+      <input type="text" class="hp" name="website2" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <button type="submit" id="rq-send">Send it</button>
+      <p class="hint">We read everything. We reply to what we can realistically cover.</p>
+    </form>
+  </section>
+
+  <section class="grp">
+    <div class="grp-head"><h2>How we work</h2></div>
+    <div class="terms" style="margin-top:0;border-top:0;padding-top:0">
+      <div>
+        <h3>No guaranteed outcome</h3>
+        <p>Sending us something buys a look, not a verdict. If it doesn't hold up we'll say so, and we'd rather tell you that before you ship anything than after.</p>
+      </div>
+      <div>
+        <h3>Everything gets disclosed</h3>
+        <p>Loaned, gifted, comped or bought &mdash; it's stated in the review. US rules require disclosing a material connection, and we'd do it regardless.</p>
+      </div>
+      <div>
+        <h3>No paid reviews</h3>
+        <p>We don't sell coverage and we don't let anyone approve copy before it runs. Sponsorship, if we ever take it, stays clearly separate from what we review.</p>
+      </div>
+      <div>
+        <h3>Real use, not unboxing</h3>
+        <p>We'd rather run something for a season than film it once. That means we're slow, and it means what we publish is worth reading.</p>
+      </div>
+      <div>
+        <h3>Where we are</h3>
+        <p>Based near Nashville and racing in the region, so facility visits are easiest in the Southeast. Further afield is possible, just slower.</p>
+      </div>
+      <div>
+        <h3>What helps</h3>
+        <p>Specs, pricing and who it's aimed at. If there's an existing product it's meant to beat, name it &mdash; comparisons make for far better coverage than solo impressions.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="sitefoot">
+    <span>Chasing Checkerz</span>
+    <span>Chase the dream. Live the race.</span>
+    <span class="r">Prototype build</span>
+  </footer>
+</div>
+<script src="assets/site.js"></script>
+<script>
+(function(){
+  var f=document.getElementById('rq-form'),
+      msg=document.getElementById('rq-msg'),
+      btn=document.getElementById('rq-send');
+  if(!f) return;
+
+  function show(kind,text){ msg.className='rq-msg '+kind; msg.textContent=text; }
+
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var data={};
+    ['name','company','email','website','kind','location','details','terms','website2']
+      .forEach(function(k){ var el=f.elements[k]; if(el) data[k]=el.value.trim(); });
+
+    if(!data.name || !data.company || !data.email || !data.kind || !data.details){
+      show('bad','Please fill in the required fields.');
+      return;
+    }
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)){
+      show('bad','That email address doesn\u2019t look right.');
+      return;
+    }
+
+    btn.disabled=true; btn.textContent='Sending\u2026';
+    fetch('/api/review-request',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(data)
+    })
+    .then(function(r){ return r.json().then(function(j){ return {ok:r.ok, body:j}; }); })
+    .then(function(res){
+      if(!res.ok) throw new Error(res.body && res.body.error || 'failed');
+      show('ok','Got it \u2014 thanks. We read every one of these and we\u2019ll be in touch if it\u2019s something we can cover properly.');
+      f.reset();
+      btn.textContent='Sent';
+    })
+    .catch(function(){
+      btn.disabled=false; btn.textContent='Send it';
+      show('bad','That didn\u2019t go through. Try again in a moment, or email us directly.');
+    });
+  });
+})();
+</script>
+</body>
+</html>
