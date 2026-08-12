@@ -135,3 +135,58 @@ const RACES = [
       '<div class="tk-win"><div class="tk-rail">'+strip+strip+'</div></div></div>';
   }
 })();
+
+/* Grouped nav menus. Keyboard and touch friendly: Escape closes, clicking
+   outside closes, arrow keys walk the items, and only one menu opens at a time. */
+(function(){
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.sitenav .navgrp'));
+  if(!groups.length) return;
+
+  function closeAll(except){
+    groups.forEach(function(g){
+      if(g===except) return;
+      g.querySelector('.navmenu').classList.remove('open');
+      g.querySelector('button').setAttribute('aria-expanded','false');
+    });
+  }
+
+  groups.forEach(function(g){
+    var btn=g.querySelector('button'), menu=g.querySelector('.navmenu');
+    if(!btn||!menu) return;
+
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var open=menu.classList.contains('open');
+      closeAll(g);
+      menu.classList.toggle('open', !open);
+      btn.setAttribute('aria-expanded', String(!open));
+    });
+
+    btn.addEventListener('keydown', function(e){
+      if(e.key==='ArrowDown'){
+        e.preventDefault();
+        closeAll(g);
+        menu.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+        var first=menu.querySelector('a'); if(first) first.focus();
+      }
+    });
+
+    menu.addEventListener('keydown', function(e){
+      var items=Array.prototype.slice.call(menu.querySelectorAll('a'));
+      var i=items.indexOf(document.activeElement);
+      if(e.key==='ArrowDown'){ e.preventDefault(); (items[i+1]||items[0]).focus(); }
+      else if(e.key==='ArrowUp'){ e.preventDefault(); (items[i-1]||items[items.length-1]).focus(); }
+    });
+  });
+
+  document.addEventListener('click', function(){ closeAll(null); });
+  document.addEventListener('keydown', function(e){
+    if(e.key!=='Escape') return;
+    var open=document.querySelector('.navmenu.open');
+    if(!open) return;
+    var g=open.closest('.navgrp');
+    closeAll(null);
+    if(g) g.querySelector('button').focus();
+  });
+})();

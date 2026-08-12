@@ -70,15 +70,25 @@ a.src:hover .src-url{color:var(--gold)}
     </div>
     <nav class="sitenav">
       <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="news.html" aria-current="page">News</a>
-      <a href="events.html">Events</a>
-      <a href="winners.html">Winners</a>
       <a href="karting.html">Karting</a>
-      <a href="tracks.html">Tracks</a>
-      <a href="frame.html">Chassis</a>
-      <a href="setup.html">Setup</a>
+      <div class="navgrp here">
+        <button type="button" aria-expanded="false" aria-haspopup="true">Racing</button>
+        <div class="navmenu">
+          <a href="news.html" aria-current="page">News</a>
+          <a href="events.html">Events</a>
+          <a href="winners.html">Winners</a>
+        </div>
+      </div>
+      <div class="navgrp">
+        <button type="button" aria-expanded="false" aria-haspopup="true">Tools</button>
+        <div class="navmenu">
+          <a href="tracks.html">Tracks</a>
+          <a href="frame.html">Chassis</a>
+          <a href="setup.html">Setup</a>
+        </div>
+      </div>
       <a href="review.html">Reviews</a>
+      <a href="about.html">About</a>
     </nav>
   </header>
 

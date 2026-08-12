@@ -202,3 +202,30 @@ a.card2:hover .c2-state{color:var(--gold)}
   .tk-tr,.tk-loc{display:none}
   .tk-item{padding-right:18px;margin-right:18px}
 }
+
+/* --- Grouped navigation ------------------------------------------------- */
+.sitenav .navgrp{position:relative}
+.sitenav .navgrp>button{font-family:var(--disp);font-weight:700;font-style:italic;font-size:15px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--grey);background:none;border:0;
+  border-bottom:3px solid transparent;padding:11px 15px 9px;cursor:pointer;display:inline-flex;
+  align-items:center;gap:6px}
+.sitenav .navgrp>button:hover{color:var(--white)}
+.sitenav .navgrp>button::after{content:"";width:0;height:0;border-left:4px solid transparent;
+  border-right:4px solid transparent;border-top:4px solid currentColor;opacity:.7;
+  transition:transform .12s ease}
+.sitenav .navgrp>button[aria-expanded="true"]::after{transform:rotate(180deg)}
+.sitenav .navgrp>button[aria-expanded="true"]{color:var(--white)}
+.sitenav .navgrp.here>button{color:var(--white);border-bottom-color:var(--red)}
+.navmenu{display:none;position:absolute;top:100%;left:0;z-index:40;min-width:190px;
+  background:var(--carbon-2);border:1px solid var(--rule);border-top:2px solid var(--red);
+  box-shadow:0 14px 34px rgba(0,0,0,.55)}
+.navmenu.open{display:block}
+.sitenav .navmenu a{display:block;padding:10px 15px;border-bottom:1px solid var(--rule);
+  border-left:3px solid transparent;font-size:14px;color:var(--grey-2)}
+.sitenav .navmenu a:last-child{border-bottom:0}
+.sitenav .navmenu a:hover,.sitenav .navmenu a:focus-visible{background:var(--carbon-3);color:var(--white)}
+.sitenav .navmenu a[aria-current="page"]{color:var(--gold);border-left-color:var(--red);border-bottom-color:var(--rule)}
+@media (max-width:640px){
+  .sitenav .navgrp>button{padding:11px 11px 9px}
+  .navmenu{left:auto;right:0}
+}
