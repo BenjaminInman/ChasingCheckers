@@ -10,14 +10,13 @@
    inert, dimmed icon — no href, nothing to click or crawl.
 ------------------------------------------------------------ */
 const SOCIALS = [
-  // NOT CONNECTED. Leave url empty and enabled false until the
-  // domain and the accounts exist. Then paste the real profile
-  // URL and flip enabled to true. One edit, every page.
-  {id:'youtube',   label:'YouTube',   url:'', enabled:false},
-  {id:'instagram', label:'Instagram', url:'', enabled:false},
-  {id:'tiktok',    label:'TikTok',    url:'', enabled:false},
-  {id:'facebook',  label:'Facebook',  url:'', enabled:false},
-  {id:'x',         label:'X',         url:'', enabled:false}
+  // Live as of Aug 2026 — handle is @chasingcheckerz everywhere.
+  // To retire one, set enabled:false; it reverts to an inert icon.
+  {id:'youtube',   label:'YouTube',   url:'https://www.youtube.com/@chasingcheckerz', enabled:true},
+  {id:'instagram', label:'Instagram', url:'https://www.instagram.com/chasingcheckerz/', enabled:true},
+  {id:'tiktok',    label:'TikTok',    url:'https://www.tiktok.com/@chasingcheckerz', enabled:true},
+  {id:'facebook',  label:'Facebook',  url:'https://www.facebook.com/chasingcheckerz', enabled:true},
+  {id:'x',         label:'X',         url:'https://x.com/chasingcheckerz', enabled:true}
 ];
 
 const ICONS = {
