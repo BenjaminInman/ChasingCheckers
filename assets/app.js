@@ -13,6 +13,7 @@ const CLASSES=[
   {id:'microswift',label:'Micro / Mini Swift',wants:'flex',hp:'~9–15 hp'},
   {id:'ka100',label:'KA100 Senior',wants:'mid',hp:'~22 hp'},
   {id:'tag',label:'Rotax / TaG Sr',wants:'mid',hp:'~28 hp'},
+  {id:'dd2',label:'Rotax DD2',wants:'stiff',hp:'~34 hp'},
   {id:'kz',label:'Shifter — KZ',wants:'stiff',hp:'~45 hp'},
   {id:'stockhonda',label:'Shifter — Stock Honda',wants:'stiff',hp:'~40 hp'}
 ];
@@ -147,6 +148,20 @@ function render(){
   const out=document.getElementById('results');
   if(!list.length){
     const isCadet=['206cadet','microswift'].includes(state.cls);
+    const isDD2=state.cls==='dd2';
+    if(isDD2){
+      out.innerHTML=`<div class="empty"><h4>DD2 needs a DD2-specific frame</h4>
+        <p>We don&rsquo;t have DD2 chassis in the database yet, and none of the frames above will do.
+        The DD2 is a chainless design &mdash; the rear axle runs through the engine, so there is no chain
+        and no conventional rear end. That, plus front brakes and the extra seat support the regulations
+        require, means a DD2 frame is a separate product from a direct-drive or KZ chassis, not a fitment
+        of one.</p>
+        <p style="margin-top:12px">What the Rotax Max Challenge regulations do fix for you: rear axle no
+        more than 50mm, wheelbase up to 1,050mm, and a chassis with valid CIK-FIA homologation for
+        international events &mdash; nationally, any chassis sanctioned by an authorised Rotax distributor.
+        Start with your distributor rather than a spec sheet.</p></div>`;
+      return;
+    }
     out.innerHTML=`<div class="empty"><h4>${isCadet?'No cadet data yet':'Nothing under that cap'}</h4>
       <p>${isCadet?'Cadet chassis aren’t in the database yet. It’s the biggest gap here and probably the most valuable one to fill — karting parents make this decision under more pressure and with less information than anyone else in the sport.'
       :'No chassis in this class comes in under that budget. Raise the cap or switch to used.'}</p></div>`;
