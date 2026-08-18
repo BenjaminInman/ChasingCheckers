@@ -77,6 +77,37 @@ const KARTS=[
    tubes:null,axle:null,brg:null,front:null,wheelbase:null,brakes:null,
    note:'Lowest new-roller price among current KZ chassis. Smaller dealer footprint than OTK, so check parts access at your track before committing.',
    support:[{name:'Italian Motors USA',city:'multiple',region:'west'}]},
+  {name:'Tony Kart Racer 401 T — DD2',origin:'Italy',classes:['dd2'],price:null,used:null,
+   tubes:[30],axle:40,brg:null,
+   front:'Multi-hole eccentric bushings with integrated uniball — camber, caster and ride height',
+   wheelbase:null,brakes:'BWZ system, 180mm or 206mm rear disc',
+   note:'OTK’s flagship in its DD2 form. Ø30mm chrome-molybdenum throughout, and the axle drops to 40mm for DD2 where the OK and KZ versions run 50mm. Carries a removable exhaust support designed specifically for this engine. Deepest parts network of any DD2 frame in North America.',
+   support:[{name:'Word Racing',city:'multiple',region:'southeast'},{name:'KartStore-USA',city:'multiple',region:'northeast'},{name:'Acceleration Karting',city:'Las Vegas, NV',region:'west'}]},
+  {name:'CompKart Covert 3.0 — DD2',origin:'J3 Competition — United States',classes:['dd2'],price:null,used:null,
+   tubes:[30],axle:null,brg:null,front:null,wheelbase:null,
+   brakes:'Self-adjusting ventilated system',
+   note:'CIK-FIA homologated 34/CH/20, uniform 30mm molybdenum steel built for DD2. The only DD2 frame here from a US-based operation, which usually means faster answers on the phone than an importer can give you.',
+   support:[{name:'Karting Concepts',city:'multiple',region:'west'},{name:'Lost Boyz Motorsports',city:'multiple',region:'southeast'}]},
+  {name:'Praga Fighter / Dragon Evo — DD2',origin:'Italy (IPK) — single US importer',classes:['dd2'],price:null,used:null,
+   tubes:[30],axle:null,brg:null,front:null,wheelbase:null,brakes:null,
+   note:'IPK builds both the Fighter and the Dragon Evo in DD2 trim. Distribution runs through one US importer, so confirm parts and lead times before ordering — that matters more on a two-speed than it does on a 206.',
+   support:[{name:'Tanda Racing — US importer',city:'Oklahoma',region:'southcentral'}]},
+  {name:'Kart Republic KR2 — DD2',origin:'Italy',classes:['dd2'],price:null,used:null,
+   tubes:[30],axle:null,brg:null,front:null,wheelbase:null,brakes:null,
+   note:'30mm frame with current homologation, configurable to order. Strong in Europe; verify who carries it near you before committing.',
+   support:[]},
+  {name:'CRG DD2 V13',origin:'Italy',classes:['dd2'],price:null,used:null,
+   tubes:null,axle:null,brg:null,front:null,wheelbase:null,brakes:null,
+   note:'CRG’s dedicated DD2 frame, long-running and regularly updated. Tubing spec not published in the material we could verify.',
+   support:[]},
+  {name:'Formula K EVO3 DD2',origin:'Italy',classes:['dd2'],price:null,used:null,
+   tubes:null,axle:null,brg:null,front:null,wheelbase:null,brakes:null,
+   note:'Current DD2 model from Formula K. Specs not published — worth a call before you shortlist it.',
+   support:[]},
+  {name:'Sodikart Sigma DD2',origin:'France',classes:['dd2'],price:null,used:null,
+   tubes:null,axle:null,brg:null,front:null,wheelbase:null,brakes:null,
+   note:'Built specifically around the Rotax DD2 engine block. Sodi is enormous in rental and European competition; US competition support is the open question, not the chassis.',
+   support:[]},
   {name:'Croc Promotions MC-01',origin:'Italy',classes:['kz'],price:6295,used:3000,
    tubes:null,axle:null,brg:null,front:null,wheelbase:null,brakes:null,
    note:'Mid-priced KZ roller. Niche in North America — support is the open question, not the chassis.',
@@ -93,6 +124,7 @@ function flexScore(k){
 }
 function verdict(k,cls){
   const c=CLASSES.find(x=>x.id===cls),f=flexScore(k);
+  if(cls==='dd2')return{cls:'b-fit',txt:'Built for DD2'};
   if(f===null)return{cls:'b-partial',txt:'Spec unverified'};
   if(c.wants==='flex')return f>=4?{cls:'b-fit',txt:'Suits the class'}:f>=2?{cls:'b-partial',txt:'Stiff for 206'}:{cls:'b-miss',txt:'Too stiff'};
   if(c.wants==='mid')return(f>=2&&f<=4)?{cls:'b-fit',txt:'Suits the class'}:{cls:'b-partial',txt:'Workable'};
@@ -150,8 +182,8 @@ function render(){
     const isCadet=['206cadet','microswift'].includes(state.cls);
     const isDD2=state.cls==='dd2';
     if(isDD2){
-      out.innerHTML=`<div class="empty"><h4>DD2 needs a DD2-specific frame</h4>
-        <p>We don&rsquo;t have DD2 chassis in the database yet, and none of the frames above will do.
+      out.innerHTML=`<div class="empty"><h4>DD2 runs a frame of its own</h4>
+        <p>Every frame listed for DD2 is a DD2-specific model, and that is not marketing.
         The DD2 is a chainless design &mdash; the rear axle runs through the engine, so there is no chain
         and no conventional rear end. That, plus front brakes and the extra seat support the regulations
         require, means a DD2 frame is a separate product from a direct-drive or KZ chassis, not a fitment
@@ -174,9 +206,12 @@ function render(){
       ['Bearings',k.brg?k.brg+(k.brg===3?' — adjustable cassettes':''):null],
       ['Front adj.',k.front],['Wheelbase',k.wheelbase],['Brakes',k.brakes]
     ].map(([t,d])=>`<dt>${t}</dt><dd>${d?d:'<span class="unk">not published</span>'}</dd>`).join('');
-    const sup=k.support.length?k.support.map(s=>{const n=s.region===state.region;
-      return `<div${n?' class="near"':''}><b>${s.name}</b> — ${s.city}${n?'  ◂ your region':''}</div>`;}).join('')
-      :'<div>No dealer listed — verify before ordering</div>';
+    const nearN=near(k);
+    const sup=k.support.length
+      ?k.support.map(s=>{const n=s.region===state.region;
+        return `<div${n?' class="near"':''}><b>${s.name}</b> — ${s.city}${n?'  ◂ your region':''}</div>`;}).join('')
+        +(nearN?'':'<div class="faraway">No dealer in your region — parts by mail</div>')
+      :'<div class="faraway">No dealer listed — verify before ordering</div>';
     return `<article class="card"><div class="card-top">
       <div><div class="name">${k.name}</div><div class="origin">${k.origin}</div></div>
       <div class="verdict"><span class="badge ${v.cls}">${v.txt}</span>
