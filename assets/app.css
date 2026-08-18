@@ -264,3 +264,6 @@ body::before{
 @media print{
   body::before{display:none}
 }
+
+/* dealer-distance flag in the chassis finder */
+.faraway{color:var(--red);opacity:.9;margin-top:4px}
