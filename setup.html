@@ -169,6 +169,7 @@ const CLASSES=[
   {id:'206cad', label:'206 Cadet',    rev:5600, stroke:4, band:null, drv:16, rear:72},
   {id:'ka100',  label:'KA100',        rev:15000,stroke:2, band:null, drv:11, rear:80},
   {id:'rotax',  label:'Rotax Max',    rev:13800,stroke:2, band:null, drv:12, rear:78},
+  {id:'dd2',    label:'Rotax DD2',    rev:13500,stroke:2, band:null, drv:12, rear:78, chainless:true},
   {id:'kz',     label:'Shifter — KZ', rev:15000,stroke:2, band:null, drv:12, rear:40, gearbox:true},
   {id:'honda',  label:'Stock Honda',  rev:13000,stroke:2, band:null, drv:12, rear:40, gearbox:true}
 ];
@@ -289,7 +290,7 @@ function render(){
   document.getElementById('k-eng').textContent=c.label+' · '+S.rev.toLocaleString()+' rpm';
   document.getElementById('k-trk').textContent=(CHARS.find(x=>x.id===S.char)||{}).label+' · '+(TOPO.find(x=>x.id===S.topo)||{}).label;
   document.getElementById('k-cond').textContent=(WX.find(x=>x.id===S.wx)||{}).label+' · '+S.temp+'°F';
-  document.getElementById('k-cur').textContent=S.drv+'/'+S.rear+' — '+r.toFixed(2)+':1';
+  document.getElementById('k-cur').textContent=c.chainless?'Chainless — no sprockets':S.drv+'/'+S.rear+' — '+r.toFixed(2)+':1';
 
   let rows='';
   for(let d=-4;d<=4;d++){
@@ -305,6 +306,9 @@ function render(){
       <dt>You are</dt><dd>${inside?'inside that window':(r<band[0]?'geared taller than typical — more top end, less drive':'geared shorter than typical — more drive, less top end')}</dd>
     </dl>
     <div class="note2">That window is a place to start on a 206, adjusted for elevation change and weather. It is not a target. Plenty of fast people sit outside it because their track or their weight says so.</div>`;
+  } else if(c.chainless){
+    bandHtml=`<div class="blank">There is nothing to calculate here. The DD2 is chainless — the rear axle runs straight through the engine, so there is no driver sprocket, no rear sprocket and no chain. The teeth fields above do not apply to this class.</div>
+    <div class="note2">Your ratios are the two internal gears, and they are fixed by the regulations. What you actually tune on a DD2 is the shift point, the tyre rollout and the chassis — not the gearing. Everything else on this page still applies.</div>`;
   } else if(c.gearbox){
     bandHtml=`<div class="blank">This is final drive only — it does not account for the internal gearbox ratios, which change the answer completely. Treat the speed figure as top-gear theoretical and nothing more.</div>
     <div class="note2">We don't publish a final-drive window for shifter classes. Gearing on a six-speed is a per-track, per-gear conversation and a single number would mislead you.</div>`;
@@ -337,18 +341,18 @@ function render(){
 
   document.getElementById('out').innerHTML=`
   <div class="panel gear">
-    <div class="p-kick">Arithmetic — this part is exact</div>
+    <div class="p-kick">${c.chainless?'Not applicable to this class':'Arithmetic — this part is exact'}</div>
     <div class="p-title">Gearing</div>
-    <div class="dual">
+    ${c.chainless?'':`<div class="dual">
       <div class="big">${r.toFixed(2)}:1<small>current ratio</small></div>
       <div class="big">${mph(r).toFixed(1)}<small>mph at limiter</small></div>
-    </div>
+    </div>`}
     ${bandHtml}
-    <table class="tbl">
+    ${c.chainless?'':`<table class="tbl">
       <thead><tr><th>Rear</th><th>Ratio</th><th>MPH at limiter</th></tr></thead>
       <tbody>${rows}</tbody>
     </table>
-    <div class="note2">Theoretical top speed assumes you actually reach the rev limit and ignores drag and drafting. Real trap speed will sit under this. The gap between them is useful information on its own.</div>
+    <div class="note2">Theoretical top speed assumes you actually reach the rev limit and ignores drag and drafting. Real trap speed will sit under this. The gap between them is useful information on its own.</div>`}
   </div>
 
   <div class="panel tire">
